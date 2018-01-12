@@ -1,0 +1,91 @@
+﻿@model TierraSanta.Models.EMPRESAS
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Editar EMPRESAS</h3>
+                </div>
+                <div class="box-body">
+
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+                    <div class="form-horizontal">
+                        <h4>EMPRESAS</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.idempresa)
+                        @Html.HiddenFor(model => model.idubicacion)
+                        @Html.HiddenFor(model => model.idpersoneria)
+                        @Html.HiddenFor(model => model.idregimen)
+                        @Html.HiddenFor(model => model.idtipo)
+                        @Html.HiddenFor(model => model.idmoneda)
+                        @Html.HiddenFor(model => model.idcomision)
+                        @Html.HiddenFor(model => model.idusuario)
+                        @Html.HiddenFor(model => model.control)
+                        @Html.HiddenFor(model => model.parametros)
+                        @Html.HiddenFor(model => model.fechainicio)
+                        @Html.HiddenFor(model => model.estado)
+                        @Html.HiddenFor(model => model.logotipo)
+                        @Html.HiddenFor(model => model.fondo)
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ruc, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ruc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ruc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.razonsocial, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.razonsocial, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.razonsocial, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Abreviatura, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Abreviatura, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Abreviatura, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                      
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Editar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

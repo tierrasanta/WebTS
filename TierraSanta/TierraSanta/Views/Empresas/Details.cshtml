@@ -1,0 +1,85 @@
+﻿@model TierraSanta.Models.EMPRESAS
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">EMPRESAS</h3>
+                </div>
+                <div class="box-body">
+				    <dl class="dl-horizontal">       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ruc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ruc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.razonsocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.razonsocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abreviatura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abreviatura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechainicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechainicio)
+        </dd>      
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechacambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechacambio)
+        </dd>       
+
+     </dl>
+<div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+
+	    @Html.ActionLink("Edita", "Edit", new { id = Model.idempresa }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default"})
+               
+                           
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

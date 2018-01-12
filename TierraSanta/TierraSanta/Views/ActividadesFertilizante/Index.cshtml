@@ -1,0 +1,100 @@
+﻿@model TierraSanta.Controllers.FertilizanteIndexViewModel
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Lista TABLAS_ACTIVIDADES</h3>
+                    <div class="box-tools">
+                        <div class="row">
+                            <div class="col-sm-7 m-b-xs">
+                                <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("Create")"> <i class="fa fa-plus"></i> Agregar</a>
+                                <a type="button" class="btn btn-sm btn-success" href="@Url.Action("ReportExcel")"> <i class="fa fa-file-excel-o"></i> Reporte Excel</a>
+                                <a type="button" class="btn btn-sm btn-warning" href="@Url.Action("ReportPDF")"> <i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
+                            </div>
+                            <div class="col-sm-5 m-b-xs">
+                                @using (Html.BeginForm("Index", "TABLAS_ACTIVIDADES", FormMethod.Get))
+                                {
+                                    <div class="input-group">
+                                        @Html.TextBox("Search", null, new { @class = "input-sm form-control" })
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary" type="submit"> Buscar</button>
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+<table class="table table-bordered table-striped">
+    <tr>        
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].abreviatura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].costo1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].fechacreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].fechacambio)
+        </th>       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Items) {
+    <tr>        
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.abreviatura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.costo1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechacreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechacambio)
+        </td>       
+        <td>
+			@Html.ActionLink("Detalle", "Details", new { id = item.idempresa, id2 = item.idactividad }, new { @class = "btn btn-primary btn-xs"})
+            @Html.ActionLink("Editar", "Edit", new { id = item.idempresa, id2 = item.idactividad }, new { @class = "btn btn-success btn-xs"})
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.idempresa, id2 = item.idactividad }, new { @class = "btn btn-danger btn-xs"})
+        </td>
+    </tr>
+}
+
+</table>
+<nav>
+                        <ul class="pagination pagination-sm">
+                            @for (int x = 1; x < Model.Pager.TotalPages + 1; x++)
+                            {
+                                if (x == Model.Pager.CurrentPage)
+                                {
+                                    <li class="active"><a href="#">@x <span class="sr-only">(current)</span></a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", new { page = @x, Search = @ViewBag.Search })">@x </a></li>
+                                }
+                            }
+                        </ul>
+                   </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tierra Santa</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="~/Content/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/Content/css/skins/_all-skins.css">
+</head>
+<body class="skin-blue sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <header class="main-header">
+            <!----a href="#" class="logo">
+            <span class="logo-lg"></span>
+        </a-->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <a class="navbar-brand" href="/"><b>Tierra Santa </b></a>
+                <div class="navbar-custom-menu">
+
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs"><b>Usuario : </b>Nombre</span>
+                            </a>
+                        </li>
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs"><b>Periodo : </b>Periodo</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/Logout" @*data-toggle="control-sidebar"*@><i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+            <!--style="padding-top: 0"-->
+            <section class="sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span>Maestros</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>@Html.ActionLink("Empresa", "Index", "Empresas")</i></li>
+                            <li>@Html.ActionLink("Finca", "Index", "Fincas")</i></li>
+                            <li>@Html.ActionLink("Lotes", "Index", "Lotes")</li>
+                            <li>@Html.ActionLink("Mano de Obra", "Index", "ActividadesManodeObra")</li>
+                            <li>@Html.ActionLink("Maquinaria", "Index", "ActividadesMaquinaria")</li>
+                            <li>@Html.ActionLink("Fertilizantes", "Index", "ActividadesFertilizante")</li>
+                            <li>@Html.ActionLink("Pesticidas", "Index", "ActividadesPesticida")</li>
+                            <li>@Html.ActionLink("Insumos", "Index", "ActividadesInsumo")</li>
+                            <li>@Html.ActionLink("Cuentas Contable", "Index", "CuentasContables")</li>
+                            @*<li>@Html.ActionLink("Actividades", "Index", "Tablas Actividades")</li>
+                 <li>@Html.ActionLink("Cultivos", "Index", "Cultivos")</li>
+                    <li>@Html.ActionLink("Plantillas", "Index", "PlantillasCultivos")</li>
+                <li>@Html.ActionLink("Tablas Cultivos", "Index", "TablasCultivos")</li>*@
+
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-clone"></i>
+                            <span>Plantillas</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>Rendimiento</li>
+                            @*<li>@Html.ActionLink("Actividades", "Index", "Tablas Actividades")</li>
+                 <li>@Html.ActionLink("Cultivos", "Index", "Cultivos")</li>
+                    <li>@Html.ActionLink("Plantillas", "Index", "PlantillasCultivos")</li>
+                <li>@Html.ActionLink("Tablas Cultivos", "Index", "TablasCultivos")</li>*@
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <div class="content-wrapper">
+            <section class="content container-fluid">
+                @RenderBody()
+            </section>
+        </div>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                Anything you want
+            </div>
+            <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        </footer>
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+    <script src="~/Content/components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/components/fastclick/lib/fastclick.js"></script>
+    <script src="~/Content/js/adminlte.min.js"></script>
+    <script src="~/Content/components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="~/Content/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Content/components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/components/chart.js/Chart.js"></script>
+    <script src="~/Content/js/pages/dashboard2.js"></script>
+    <script src="~/Content/js/demo.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
