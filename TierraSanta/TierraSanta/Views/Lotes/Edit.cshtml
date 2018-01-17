@@ -1,4 +1,4 @@
-﻿@model TierraSanta.Models.LOTES
+﻿@model TierraSanta.Models.Lote
 
 @{
     ViewBag.Title = "Edit";
@@ -12,25 +12,23 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Editar LOTES</h3>
+                    <h3 class="box-title">Editar Lote</h3>
                 </div>
                 <div class="box-body">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
                     <div class="form-horizontal">
-                        <h4>LOTES</h4>
+                        <h4>Lote</h4>
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.idempresa)
-
-                        @Html.HiddenFor(model => model.idfinca)
-
                         @Html.HiddenFor(model => model.idlote)
                         @Html.HiddenFor(model => model.idusuario)
                         @Html.HiddenFor(model => model.fechacreacion)
+                        @Html.HiddenFor(model => model.idfundo)
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -47,7 +45,9 @@
                                 @Html.ValidationMessageFor(model => model.area, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        
+
+
+
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">

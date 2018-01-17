@@ -16,9 +16,9 @@ using iTextSharp.text.pdf;
 namespace TierraSanta.Controllers
 {
 
-    public class LOTESIndexViewModel
+	public class LoteIndexViewModel
     {
-        public List<LOTES> Items { get; set; }
+		public List<Lote> Items { get; set; }
         public Pager Pager { get; set; }
     }
 
@@ -26,32 +26,20 @@ namespace TierraSanta.Controllers
     {
         private EntitiesTierraSanta db = new EntitiesTierraSanta();
 
-
+		
         // GET: Lotes
         public ActionResult Index(int? page, String Search)
         {
-            //
-            var viewModel = new LOTESIndexViewModel();
+		//
+			var viewModel = new LoteIndexViewModel();            
 
-            //if (Search == null || Search.Equals(""))
-            //{
-            var pager = new Pager(db.LOTES.Count(), page);
-            viewModel.Items = db.LOTES.Include(l => l.FINCAS)
-                    .OrderBy(c => c.idlote)
-                    .Skip((pager.CurrentPage - 1) * pager.PageSize)
-                    .Take(pager.PageSize).ToList();
-            viewModel.Pager = pager;
-            //        }
-            //        else
-            //        {
-            //var pager = new Pager(db.LOTES.Where(c => c.AgregarVariableAbuscar.Contains(Search)).Count(), page);
-            //            viewModel.Items = db.LOTES.Include(l => l.FINCAS).Where(c => c.AgregarVariableAbuscar.Contains(Search))
-            //                    .OrderBy(c => c.LOTESID)
-            //                    .Skip((pager.CurrentPage - 1) * pager.PageSize)
-            //                    .Take(pager.PageSize).ToList();
-            //viewModel.Pager = pager;
-            //@ViewBag.Search = Search;
-            //        }
+           	var pager = new Pager(db.Lote.Count(), page);
+                viewModel.Items = db.Lote.Include(l => l.Fundo)
+                        .OrderBy(c => c.idlote)
+                        .Skip((pager.CurrentPage - 1) * pager.PageSize)
+                        .Take(pager.PageSize).ToList();
+                viewModel.Pager = pager;
+            
             return View(viewModel);
         }
 
@@ -64,18 +52,18 @@ namespace TierraSanta.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LOTES lOTES = db.LOTES.Find(id, id2, id3);
-            if (lOTES == null)
+            Lote lote = db.Lote.Find(id,id2,id3);
+            if (lote == null)
             {
                 return HttpNotFound();
             }
-            return View(lOTES);
+            return View(lote);
         }
 
         // GET: Lotes/Create
         public ActionResult Create()
         {
-            ViewBag.idfinca = new SelectList(db.FINCAS, "idfinca", "descripcion");
+            ViewBag.idfundo = new SelectList(db.Fundo, "idfundo", "descripcion");
             return View();
         }
 
@@ -84,24 +72,23 @@ namespace TierraSanta.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idempresa,idfinca,idlote,idusuario,descripcion,area,fechacreacion,fechacambio")] LOTES lOTES)
+        public ActionResult Create([Bind(Include = "idempresa,idlote,idusuario,descripcion,area,fechacreacion,fechacambio,idfundo")] Lote lote)
         {
-            lOTES.idempresa = "01";
-            List<LOTES> l = db.LOTES.ToList();
-            if (l.Count == 0) { lOTES.idlote = "0001"; }
-            else { lOTES.idlote = getidlote(Convert.ToInt32(l.Last().idlote)); }
-            lOTES.idusuario = "0001";
+            lote.idempresa = "01";
+            List<Lote> l = db.Lote.ToList();
+            if (l.Count == 0) { lote.idlote = "0001"; }
+            else { lote.idlote = getidlote(Convert.ToInt32(l.Last().idlote)); }
+            lote.idusuario = "0001";
             if (ModelState.IsValid)
             {
-                //lOTES.Creado = DateTime.Now;
-                //lOTES.Modificado = DateTime.Now;
-                db.LOTES.Add(lOTES);
+                
+                db.Lote.Add(lote);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idempresa = new SelectList(db.FINCAS, "idempresa", "idusuario", lOTES.idempresa);
-            return View(lOTES);
+            ViewBag.idfundo = new SelectList(db.Fundo, "idfundo", "descripcion", lote.idempresa);
+            return View(lote);
         }
 
         private string getidlote(int idlote)
@@ -121,13 +108,13 @@ namespace TierraSanta.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LOTES lOTES = db.LOTES.Find(id, id2, id3);
-            if (lOTES == null)
+            Lote lote = db.Lote.Find(id,id2,id3);
+            if (lote == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idempresa = new SelectList(db.FINCAS, "idempresa", "idusuario", lOTES.idempresa);
-            return View(lOTES);
+            ViewBag.idfundo = new SelectList(db.Fundo, "idfundo", "descripcion", lote.idempresa);
+            return View(lote);
         }
 
         // POST: Lotes/Edit/5
@@ -135,18 +122,17 @@ namespace TierraSanta.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idempresa,idfinca,idlote,idusuario,descripcion,area,fechacreacion,fechacambio")] LOTES lOTES)
+        public ActionResult Edit([Bind(Include = "idempresa,idlote,idusuario,descripcion,area,fechacreacion,fechacambio,idfundo")] Lote lote)
         {
-            lOTES.fechacambio = DateTime.Now;
+            lote.fechacambio = DateTime.Now;
             if (ModelState.IsValid)
             {
-                db.Entry(lOTES).State = EntityState.Modified;
-                //lOTES.Modificado = DateTime.Now;
+                db.Entry(lote).State = EntityState.Modified;				
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idempresa = new SelectList(db.FINCAS, "idempresa", "idusuario", lOTES.idempresa);
-            return View(lOTES);
+            ViewBag.idfundo = new SelectList(db.Fundo, "idfundo", "descripcion", lote.idempresa);
+            return View(lote);
         }
 
         // GET: Lotes/Delete/5
@@ -156,12 +142,12 @@ namespace TierraSanta.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LOTES lOTES = db.LOTES.Find(id, id2, id3);
-            if (lOTES == null)
+            Lote lote = db.Lote.Find(id,id2,id3);
+            if (lote == null)
             {
                 return HttpNotFound();
             }
-            return View(lOTES);
+            return View(lote);
         }
 
         // POST: Lotes/Delete/5
@@ -169,8 +155,8 @@ namespace TierraSanta.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id, string id2, string id3)
         {
-            LOTES lOTES = db.LOTES.Find(id, id2, id3);
-            db.LOTES.Remove(lOTES);
+            Lote lote = db.Lote.Find(id,id2,id3);
+            db.Lote.Remove(lote);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -184,7 +170,7 @@ namespace TierraSanta.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult ReportExcel()
+		public ActionResult ReportExcel()
         {
             using (var package = new ExcelPackage())
             {
@@ -193,27 +179,25 @@ namespace TierraSanta.Controllers
                 ws.Name = "Report";
                 ws.Cells.Style.Font.Size = 11;
                 ws.Cells.Style.Font.Name = "Calibri";
-                //.Include(l => l.FINCAS)
-                List<LOTES> list = db.LOTES.Include(l => l.FINCAS).ToList();
+				//.Include(l => l.Fundo)
+                List<Lote> list = db.Lote.Include(l => l.Fundo).ToList();
                 int pos = 4;
-                ws.Cells[pos, 5].Value = "idusuario";
-                ws.Cells[pos, 6].Value = "descripcion";
-                ws.Cells[pos, 7].Value = "area";
-                ws.Cells[pos, 8].Value = "fechacreacion";
-                ws.Cells[pos, 9].Value = "fechacambio";
-                ws.Cells[pos, 10].Value = "FINCAS";
-
+								ws.Cells[pos, 4].Value = "Fundo";
+									ws.Cells[pos, 5].Value = "descripcion";
+									ws.Cells[pos, 6].Value = "area";
+									ws.Cells[pos, 7].Value = "fechacreacion";
+									ws.Cells[pos, 8].Value = "fechacambio";
+														
                 foreach (var item in list)
                 {
                     pos++;
-                    ws.Cells[pos, 5].Value = item.idusuario == null ? "" : item.idusuario.ToString();
-                    ws.Cells[pos, 6].Value = item.descripcion == null ? "" : item.descripcion.ToString();
-                    ws.Cells[pos, 7].Value = item.area == null ? "" : item.area.ToString();
-                    ws.Cells[pos, 8].Value = item.fechacreacion == null ? "" : item.fechacreacion.ToString();
-                    ws.Cells[pos, 9].Value = item.fechacambio == null ? "" : item.fechacambio.ToString();
-                    ws.Cells[pos, 10].Value = item.FINCAS == null ? "" : item.FINCAS.ToString();
-                }
-                ws.Cells["B3:F" + pos].AutoFitColumns();
+								ws.Cells[pos, 4].Value = item.Fundo.descripcion == null ? "" : item.Fundo.descripcion.ToString();				
+									ws.Cells[pos, 5].Value = item.descripcion == null ? "" : item.descripcion.ToString();				
+									ws.Cells[pos, 6].Value = item.area == null ? "" : item.area.ToString();				
+									ws.Cells[pos, 7].Value = item.fechacreacion == null ? "" : item.fechacreacion.ToString();				
+									ws.Cells[pos, 8].Value = item.fechacambio == null ? "" : item.fechacambio.ToString();																	
+					                }
+				ws.Cells["B3:F" + pos].AutoFitColumns();
 
 
                 Response.Clear();
@@ -227,41 +211,39 @@ namespace TierraSanta.Controllers
             return null;
         }
 
-        public ActionResult ReportPDF()
+		public ActionResult ReportPDF()
         {
             var document = new Document(PageSize.A4, 50, 50, 25, 25);
             var output = new MemoryStream();
             var writer = PdfWriter.GetInstance(document, output);
             document.Open();
 
-
+			
             var table = new PdfPTable(6);
 
             var boldTableFont = FontFactory.GetFont("Arial", 10, Font.BOLD);
             var bodyFont = FontFactory.GetFont("Arial", 10, Font.NORMAL);
 
-            table.AddCell(new Phrase("idusuario", boldTableFont));
-            table.AddCell(new Phrase("descripcion", boldTableFont));
-            table.AddCell(new Phrase("area", boldTableFont));
-            table.AddCell(new Phrase("fechacreacion", boldTableFont));
-            table.AddCell(new Phrase("fechacambio", boldTableFont));
-            table.AddCell(new Phrase("FINCAS", boldTableFont));
+							table.AddCell(new Phrase("Fundo", boldTableFont));
+									table.AddCell(new Phrase("Lote", boldTableFont));
+									table.AddCell(new Phrase("area", boldTableFont));
+									table.AddCell(new Phrase("fecha de creacion", boldTableFont));
+									table.AddCell(new Phrase("fecha de cambio", boldTableFont));									
+									              
+//
+            List<Lote> list = db.Lote.Include(l => l.Fundo).ToList();
 
-            //
-            List<LOTES> list = db.LOTES.Include(l => l.FINCAS).ToList();
+			foreach (var item in list)
+                {
+                    
+								table.AddCell(new Phrase(item.Fundo.descripcion == null ? "" : item.Fundo.descripcion.ToString(), bodyFont));			
+									table.AddCell(new Phrase(item.descripcion == null ? "" : item.descripcion.ToString(), bodyFont));			
+									table.AddCell(new Phrase(item.area == null ? "" : item.area.ToString(), bodyFont));			
+									table.AddCell(new Phrase(item.fechacreacion == null ? "" : item.fechacreacion.ToString(), bodyFont));			
+									table.AddCell(new Phrase(item.fechacambio == null ? "" : item.fechacambio.ToString(), bodyFont));												
+									}
 
-            foreach (var item in list)
-            {
-
-                table.AddCell(new Phrase(item.idusuario == null ? "" : item.idusuario.ToString(), bodyFont));
-                table.AddCell(new Phrase(item.descripcion == null ? "" : item.descripcion.ToString(), bodyFont));
-                table.AddCell(new Phrase(item.area == null ? "" : item.area.ToString(), bodyFont));
-                table.AddCell(new Phrase(item.fechacreacion == null ? "" : item.fechacreacion.ToString(), bodyFont));
-                table.AddCell(new Phrase(item.fechacambio == null ? "" : item.fechacambio.ToString(), bodyFont));
-                table.AddCell(new Phrase(item.FINCAS == null ? "" : item.FINCAS.ToString(), bodyFont));
-            }
-
-
+            
 
             document.Add(table);
             document.Close();

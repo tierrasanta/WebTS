@@ -224,29 +224,22 @@
     <Compile Include="Controllers\ActividadesManodeObraController.cs" />
     <Compile Include="Controllers\ActividadesMaquinariaController.cs" />
     <Compile Include="Controllers\ActividadesPesticidaController.cs" />
-    <Compile Include="Controllers\CuentasContablesController.cs" />
-    <Compile Include="Controllers\EmpresasController.cs" />
-    <Compile Include="Controllers\FincasController.cs" />
+    <Compile Include="Controllers\FundosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LotesController.cs" />
-    <Compile Include="Controllers\TablasCultivosController.cs" />
+    <Compile Include="Controllers\PlantillaCultivoCabecerasController.cs" />
+    <Compile Include="Controllers\PlantillaCultivoDetallesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\Pager.cs" />
-    <Compile Include="Models\CUENTAS_CONTABLES.cs">
+    <Compile Include="Models\Cultivo.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CULTIVOS.cs">
+    <Compile Include="Models\Fundo.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EMPRESAS.cs">
-      <DependentUpon>ModelTierraSanta.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FINCAS.cs">
-      <DependentUpon>ModelTierraSanta.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LOTES.cs">
+    <Compile Include="Models\Lote.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelTierraSanta.Context.cs">
@@ -264,16 +257,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelTierraSanta.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\PARAMETROS_GENERALES.cs">
+    <Compile Include="Models\PlantillaCultivoCabecera.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PLANTILLAS_CULTIVOS.cs">
+    <Compile Include="Models\PlantillaCultivoDetalle.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TABLAS_ACTIVIDADES.cs">
+    <Compile Include="Models\TablaActividades.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TABLAS_CULTIVOS.cs">
+    <Compile Include="Models\TablaCultivos.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -7429,11 +7422,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Fincas\Create.cshtml" />
-    <Content Include="Views\Fincas\Delete.cshtml" />
-    <Content Include="Views\Fincas\Details.cshtml" />
-    <Content Include="Views\Fincas\Edit.cshtml" />
-    <Content Include="Views\Fincas\Index.cshtml" />
+    <Content Include="Views\Fundos\Create.cshtml" />
+    <Content Include="Views\Fundos\Delete.cshtml" />
+    <Content Include="Views\Fundos\Details.cshtml" />
+    <Content Include="Views\Fundos\Edit.cshtml" />
+    <Content Include="Views\Fundos\Index.cshtml" />
     <Content Include="Views\Lotes\Create.cshtml" />
     <Content Include="Views\Lotes\Delete.cshtml" />
     <Content Include="Views\Lotes\Details.cshtml" />
@@ -7444,16 +7437,6 @@
     <Content Include="Views\ActividadesManodeObra\Details.cshtml" />
     <Content Include="Views\ActividadesManodeObra\Edit.cshtml" />
     <Content Include="Views\ActividadesManodeObra\Index.cshtml" />
-    <Content Include="Views\TABLAS_CULTIVOS\Create.cshtml" />
-    <Content Include="Views\TABLAS_CULTIVOS\Delete.cshtml" />
-    <Content Include="Views\TABLAS_CULTIVOS\Details.cshtml" />
-    <Content Include="Views\TABLAS_CULTIVOS\Edit.cshtml" />
-    <Content Include="Views\TABLAS_CULTIVOS\Index.cshtml" />
-    <Content Include="Views\TablasCultivos\Create.cshtml" />
-    <Content Include="Views\TablasCultivos\Delete.cshtml" />
-    <Content Include="Views\TablasCultivos\Details.cshtml" />
-    <Content Include="Views\TablasCultivos\Edit.cshtml" />
-    <Content Include="Views\TablasCultivos\Index.cshtml" />
     <Content Include="Views\ActividadesMaquinaria\Create.cshtml" />
     <Content Include="Views\ActividadesMaquinaria\Delete.cshtml" />
     <Content Include="Views\ActividadesMaquinaria\Details.cshtml" />
@@ -7474,16 +7457,16 @@
     <Content Include="Views\ActividadesInsumo\Details.cshtml" />
     <Content Include="Views\ActividadesInsumo\Edit.cshtml" />
     <Content Include="Views\ActividadesInsumo\Index.cshtml" />
-    <Content Include="Views\Empresas\Create.cshtml" />
-    <Content Include="Views\Empresas\Delete.cshtml" />
-    <Content Include="Views\Empresas\Details.cshtml" />
-    <Content Include="Views\Empresas\Edit.cshtml" />
-    <Content Include="Views\Empresas\Index.cshtml" />
-    <Content Include="Views\CuentasContables\Create.cshtml" />
-    <Content Include="Views\CuentasContables\Delete.cshtml" />
-    <Content Include="Views\CuentasContables\Details.cshtml" />
-    <Content Include="Views\CuentasContables\Edit.cshtml" />
-    <Content Include="Views\CuentasContables\Index.cshtml" />
+    <Content Include="Views\PlantillaCultivoCabeceras\Create.cshtml" />
+    <Content Include="Views\PlantillaCultivoCabeceras\Delete.cshtml" />
+    <Content Include="Views\PlantillaCultivoCabeceras\Details.cshtml" />
+    <Content Include="Views\PlantillaCultivoCabeceras\Edit.cshtml" />
+    <Content Include="Views\PlantillaCultivoCabeceras\Index.cshtml" />
+    <Content Include="Views\PlantillaCultivoDetalles\Create.cshtml" />
+    <Content Include="Views\PlantillaCultivoDetalles\Delete.cshtml" />
+    <Content Include="Views\PlantillaCultivoDetalles\Details.cshtml" />
+    <Content Include="Views\PlantillaCultivoDetalles\Edit.cshtml" />
+    <Content Include="Views\PlantillaCultivoDetalles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

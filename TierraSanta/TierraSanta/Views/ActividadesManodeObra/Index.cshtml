@@ -1,4 +1,4 @@
-﻿@model TierraSanta.Controllers.TABLAS_ACTIVIDADESIndexViewModel
+﻿@model TierraSanta.Models.TablaActividadesIndexViewModel
 
 @{
     ViewBag.Title = "Lista";
@@ -9,7 +9,7 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Lista TABLAS_ACTIVIDADES</h3>
+                    <h3 class="box-title">Lista TablaActividades</h3>
                     <div class="box-tools">
                         <div class="row">
                             <div class="col-sm-7 m-b-xs">
@@ -18,7 +18,7 @@
                                 <a type="button" class="btn btn-sm btn-warning" href="@Url.Action("ReportPDF")"> <i class="fa fa-file-pdf-o"></i> Reporte PDF</a>
                             </div>
                             <div class="col-sm-5 m-b-xs">
-                                @using (Html.BeginForm("Index", "TABLAS_ACTIVIDADES", FormMethod.Get))
+                                @using (Html.BeginForm("Index", "TablaActividades", FormMethod.Get))
                                 {
                                     <div class="input-group">
                                         @Html.TextBox("Search", null, new { @class = "input-sm form-control" })
@@ -33,7 +33,10 @@
                 </div>
                 <div class="box-body">
 <table class="table table-bordered table-striped">
-    <tr>       
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].idusuario)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Items[0].descripcion)
         </th>
@@ -49,12 +52,17 @@
         <th>
             @Html.DisplayNameFor(model => model.Items[0].fechacambio)
         </th>
-       
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].TablaCultivos.idusuario)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model.Items) {
-    <tr>        
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idusuario)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.descripcion)
         </td>
@@ -69,11 +77,14 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.fechacambio)
-        </td>       
+        </td>
         <td>
-			@Html.ActionLink("Detalle", "Details", new { id = item.idempresa, id2 = item.idactividad }, new { @class = "btn btn-primary btn-xs"})
-            @Html.ActionLink("Editar", "Edit", new { id = item.idempresa, id2 = item.idactividad }, new { @class = "btn btn-success btn-xs"})
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.idempresa, id2 = item.idactividad }, new { @class = "btn btn-danger btn-xs"})
+            @Html.DisplayFor(modelItem => item.TablaCultivos.idusuario)
+        </td>
+        <td>
+			@Html.ActionLink("Detalle", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary btn-xs"})
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-success btn-xs"})
+            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger btn-xs"})
         </td>
     </tr>
 }

@@ -1,4 +1,4 @@
-﻿@model TierraSanta.Models.TABLAS_ACTIVIDADES
+﻿@model TierraSanta.Models.TablaActividades
 
 @{
     ViewBag.Title = "Detalle";
@@ -11,12 +11,18 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">TABLAS_ACTIVIDADES</h3>
+                    <h3 class="box-title">TablaActividades</h3>
                 </div>
                 <div class="box-body">
 				    <dl class="dl-horizontal">
-        
-        
+        <dt>
+            @Html.DisplayNameFor(model => model.idusuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idusuario)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.descripcion)
         </dt>
@@ -55,13 +61,21 @@
 
         <dd>
             @Html.DisplayFor(model => model.fechacambio)
-        </dd>       
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TablaCultivos.idusuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TablaCultivos.idusuario)
+        </dd>
 
      </dl>
 <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
 
-	    @Html.ActionLink("Edita", "Edit", new { id = Model.idempresa, id2 = Model.idactividad }, new { @class = "btn btn-primary"})
+	    @Html.ActionLink("Edita", "Edit", new { /* id = Model.PrimaryKey */ }, new { @class = "btn btn-primary"})
     @Html.ActionLink("Cancelar", "Index",null , new { @class = "btn btn-default"})
                
                            

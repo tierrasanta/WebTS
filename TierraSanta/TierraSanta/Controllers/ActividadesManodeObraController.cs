@@ -16,9 +16,9 @@ using iTextSharp.text.pdf;
 namespace TierraSanta.Controllers
 {
 
-	public class TABLAS_ACTIVIDADESIndexViewModel
+	public class ActividadesManodeObraIndexViewModel
     {
-		public List<TABLAS_ACTIVIDADES> Items { get; set; }
+		public List<TablaActividades> Items { get; set; }
         public Pager Pager { get; set; }
     }
 
@@ -31,39 +31,39 @@ namespace TierraSanta.Controllers
         public ActionResult Index(int? page, String Search)
         {
 		//
-			var viewModel = new TABLAS_ACTIVIDADESIndexViewModel();
+			var viewModel = new ActividadesManodeObraIndexViewModel();            
 
-            var pager = new Pager(db.TABLAS_ACTIVIDADES.Where(x => x.idactividad.StartsWith("0101")).Count(), page);
-
-            viewModel.Items = db.TABLAS_ACTIVIDADES.Where(x => x.idactividad.StartsWith("0101")).Include(t => t.TABLAS_CULTIVOS)
-                    .OrderBy(c => c.idactividad)
-                    .Skip((pager.CurrentPage - 1) * pager.PageSize)
-                    .Take(pager.PageSize).ToList();
-            viewModel.Pager = pager;
+				var pager = new Pager(db.TablaActividades.Count(), page);
+                viewModel.Items = db.TablaActividades.Include(t => t.TablaCultivos)
+                        .OrderBy(c => c.idactividad)
+                        .Skip((pager.CurrentPage - 1) * pager.PageSize)
+                        .Take(pager.PageSize).ToList();
+                viewModel.Pager = pager;
+          
             return View(viewModel);
         }
 
 
 
         // GET: ActividadesManodeObra/Details/5
-        public ActionResult Details(string id, string id2)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TABLAS_ACTIVIDADES tABLAS_ACTIVIDADES = db.TABLAS_ACTIVIDADES.Find(id, id2);
-            if (tABLAS_ACTIVIDADES == null)
+            TablaActividades tablaActividades = db.TablaActividades.Find(id);
+            if (tablaActividades == null)
             {
                 return HttpNotFound();
             }
-            return View(tABLAS_ACTIVIDADES);
+            return View(tablaActividades);
         }
 
         // GET: ActividadesManodeObra/Create
         public ActionResult Create()
         {
-            ViewBag.unimedida = new SelectList(db.TABLAS_CULTIVOS.Where(x=>x.idcodigo.StartsWith("01")), "idcodigo", "descripcion");
+            ViewBag.idempresa = new SelectList(db.TablaCultivos, "idempresa", "idusuario");
             return View();
         }
 
@@ -72,52 +72,33 @@ namespace TierraSanta.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idempresa,idactividad,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio")] TABLAS_ACTIVIDADES tABLAS_ACTIVIDADES)
+        public ActionResult Create([Bind(Include = "idempresa,idactividad,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio")] TablaActividades tablaActividades)
         {
-            tABLAS_ACTIVIDADES.idempresa = "01";
-            List<TABLAS_ACTIVIDADES> ta = db.TABLAS_ACTIVIDADES.Where(x => x.idactividad.StartsWith("0101")).ToList();
-            if (ta.Count == 0) { tABLAS_ACTIVIDADES.idactividad = "01010001"; }
-            else { tABLAS_ACTIVIDADES.idactividad = getactividades(Convert.ToInt32(ta.Last().idactividad.Substring(4))); }
-            tABLAS_ACTIVIDADES.idusuario = "0001";
             if (ModelState.IsValid)
-            {
-                //tABLAS_ACTIVIDADES.Creado = DateTime.Now;
-                //tABLAS_ACTIVIDADES.Modificado = DateTime.Now;
-                db.TABLAS_ACTIVIDADES.Add(tABLAS_ACTIVIDADES);
+            {                
+                db.TablaActividades.Add(tablaActividades);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idempresa = new SelectList(db.TABLAS_CULTIVOS, "idempresa", "idusuario", tABLAS_ACTIVIDADES.idempresa);
-            return View(tABLAS_ACTIVIDADES);
-        }
-
-        private string getactividades(int v)
-        {
-            v = v + 1;
-            int digitos = Convert.ToString(v).Length;
-            if (digitos == 1) { return "0101000" + v; }
-            else if (digitos == 2) { return "010100" + v; }
-            else if (digitos == 3) { return "01010" + v; }
-            else if (digitos == 4) { return "0101" + v; }
-            else { return Convert.ToString(v); }
-            
+            ViewBag.idempresa = new SelectList(db.TablaCultivos, "idempresa", "idusuario", tablaActividades.idempresa);
+            return View(tablaActividades);
         }
 
         // GET: ActividadesManodeObra/Edit/5
-        public ActionResult Edit(string id, string id2)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TABLAS_ACTIVIDADES tABLAS_ACTIVIDADES = db.TABLAS_ACTIVIDADES.Find(id, id2);
-            if (tABLAS_ACTIVIDADES == null)
+            TablaActividades tablaActividades = db.TablaActividades.Find(id);
+            if (tablaActividades == null)
             {
                 return HttpNotFound();
             }
-           ViewBag.unimedida = new SelectList(db.TABLAS_CULTIVOS.Where(x=>x.idcodigo.StartsWith("01")), "idcodigo", "descripcion");
-            return View(tABLAS_ACTIVIDADES);
+            ViewBag.idempresa = new SelectList(db.TablaCultivos, "idempresa", "idusuario", tablaActividades.idempresa);
+            return View(tablaActividades);
         }
 
         // POST: ActividadesManodeObra/Edit/5
@@ -125,42 +106,40 @@ namespace TierraSanta.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idempresa,idactividad,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio")] TABLAS_ACTIVIDADES tABLAS_ACTIVIDADES)
+        public ActionResult Edit([Bind(Include = "idempresa,idactividad,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio")] TablaActividades tablaActividades)
         {
-            tABLAS_ACTIVIDADES.fechacambio = DateTime.Now;
             if (ModelState.IsValid)
             {
-                db.Entry(tABLAS_ACTIVIDADES).State = EntityState.Modified;
-				//tABLAS_ACTIVIDADES.Modificado = DateTime.Now;
+                db.Entry(tablaActividades).State = EntityState.Modified;				
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idempresa = new SelectList(db.TABLAS_CULTIVOS, "idempresa", "idusuario", tABLAS_ACTIVIDADES.idempresa);
-            return View(tABLAS_ACTIVIDADES);
+            ViewBag.idempresa = new SelectList(db.TablaCultivos, "idempresa", "idusuario", tablaActividades.idempresa);
+            return View(tablaActividades);
         }
 
         // GET: ActividadesManodeObra/Delete/5
-        public ActionResult Delete(string id, string id2)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TABLAS_ACTIVIDADES tABLAS_ACTIVIDADES = db.TABLAS_ACTIVIDADES.Find(id, id2);
-            if (tABLAS_ACTIVIDADES == null)
+            TablaActividades tablaActividades = db.TablaActividades.Find(id);
+            if (tablaActividades == null)
             {
                 return HttpNotFound();
             }
-            return View(tABLAS_ACTIVIDADES);
+            return View(tablaActividades);
         }
 
         // POST: ActividadesManodeObra/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id, string id2)
+        public ActionResult DeleteConfirmed(string id)
         {
-            TABLAS_ACTIVIDADES tABLAS_ACTIVIDADES = db.TABLAS_ACTIVIDADES.Find(id, id2);
-            db.TABLAS_ACTIVIDADES.Remove(tABLAS_ACTIVIDADES);
+            TablaActividades tablaActividades = db.TablaActividades.Find(id);
+            db.TablaActividades.Remove(tablaActividades);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -183,8 +162,8 @@ namespace TierraSanta.Controllers
                 ws.Name = "Report";
                 ws.Cells.Style.Font.Size = 11;
                 ws.Cells.Style.Font.Name = "Calibri";
-				//.Include(t => t.TABLAS_CULTIVOS)
-                List<TABLAS_ACTIVIDADES> list = db.TABLAS_ACTIVIDADES.Include(t => t.TABLAS_CULTIVOS).ToList();
+				//.Include(t => t.TablaCultivos)
+                List<TablaActividades> list = db.TablaActividades.Include(t => t.TablaCultivos).ToList();
                 int pos = 4;
 								ws.Cells[pos, 4].Value = "idusuario";
 									ws.Cells[pos, 5].Value = "descripcion";
@@ -192,8 +171,7 @@ namespace TierraSanta.Controllers
 									ws.Cells[pos, 8].Value = "costo1";
 									ws.Cells[pos, 9].Value = "fechacreacion";
 									ws.Cells[pos, 10].Value = "fechacambio";
-									ws.Cells[pos, 11].Value = "PLANTILLAS_CULTIVOS";
-									ws.Cells[pos, 12].Value = "TABLAS_CULTIVOS";
+									ws.Cells[pos, 11].Value = "TablaCultivos";
 					
                 foreach (var item in list)
                 {
@@ -204,8 +182,7 @@ namespace TierraSanta.Controllers
 									ws.Cells[pos, 8].Value = item.costo1 == null ? "" : item.costo1.ToString();				
 									ws.Cells[pos, 9].Value = item.fechacreacion == null ? "" : item.fechacreacion.ToString();				
 									ws.Cells[pos, 10].Value = item.fechacambio == null ? "" : item.fechacambio.ToString();				
-									ws.Cells[pos, 11].Value = item.PLANTILLAS_CULTIVOS == null ? "" : item.PLANTILLAS_CULTIVOS.ToString();				
-									ws.Cells[pos, 12].Value = item.TABLAS_CULTIVOS == null ? "" : item.TABLAS_CULTIVOS.ToString();				
+									ws.Cells[pos, 11].Value = item.TablaCultivos == null ? "" : item.TablaCultivos.ToString();				
 					                }
 				ws.Cells["B3:F" + pos].AutoFitColumns();
 
@@ -229,7 +206,7 @@ namespace TierraSanta.Controllers
             document.Open();
 
 			
-            var table = new PdfPTable(8);
+            var table = new PdfPTable(7);
 
             var boldTableFont = FontFactory.GetFont("Arial", 10, Font.BOLD);
             var bodyFont = FontFactory.GetFont("Arial", 10, Font.NORMAL);
@@ -240,11 +217,10 @@ namespace TierraSanta.Controllers
 									table.AddCell(new Phrase("costo1", boldTableFont));
 									table.AddCell(new Phrase("fechacreacion", boldTableFont));
 									table.AddCell(new Phrase("fechacambio", boldTableFont));
-									table.AddCell(new Phrase("PLANTILLAS_CULTIVOS", boldTableFont));
-									table.AddCell(new Phrase("TABLAS_CULTIVOS", boldTableFont));
+									table.AddCell(new Phrase("TablaCultivos", boldTableFont));
 									              
 //
-            List<TABLAS_ACTIVIDADES> list = db.TABLAS_ACTIVIDADES.Include(t => t.TABLAS_CULTIVOS).ToList();
+            List<TablaActividades> list = db.TablaActividades.Include(t => t.TablaCultivos).ToList();
 
 			foreach (var item in list)
                 {
@@ -255,8 +231,7 @@ namespace TierraSanta.Controllers
 									table.AddCell(new Phrase(item.costo1 == null ? "" : item.costo1.ToString(), bodyFont));			
 									table.AddCell(new Phrase(item.fechacreacion == null ? "" : item.fechacreacion.ToString(), bodyFont));			
 									table.AddCell(new Phrase(item.fechacambio == null ? "" : item.fechacambio.ToString(), bodyFont));			
-									table.AddCell(new Phrase(item.PLANTILLAS_CULTIVOS == null ? "" : item.PLANTILLAS_CULTIVOS.ToString(), bodyFont));			
-									table.AddCell(new Phrase(item.TABLAS_CULTIVOS == null ? "" : item.TABLAS_CULTIVOS.ToString(), bodyFont));			
+									table.AddCell(new Phrase(item.TablaCultivos == null ? "" : item.TablaCultivos.ToString(), bodyFont));			
 									}
 
             
