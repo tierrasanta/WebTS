@@ -17,15 +17,31 @@
                     <h4 class="text-danger">¿Estás seguro que quieres eliminar esto?</h4>
 				 <dl class="dl-horizontal">
         <dt>
-            Nombre de la plantilla
+            @Html.DisplayNameFor(model => model.idempresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idempresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.descripcion)
-        </dd>        
+        </dd>
 
         <dt>
-           Fecha de creacion
+            @Html.DisplayNameFor(model => model.idusuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idusuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechacreacion)
         </dt>
 
         <dd>
@@ -33,7 +49,7 @@
         </dd>
 
         <dt>
-           Fecha de cambio
+            @Html.DisplayNameFor(model => model.fechacambio)
         </dt>
 
         <dd>

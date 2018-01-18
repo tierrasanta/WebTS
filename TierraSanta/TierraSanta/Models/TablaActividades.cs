@@ -18,20 +18,25 @@ namespace TierraSanta.Models
         public TablaActividades()
         {
             this.PlantillaCultivoDetalle = new HashSet<PlantillaCultivoDetalle>();
+            this.TablaActividades1 = new HashSet<TablaActividades>();
         }
     
+        public int idactividades { get; set; }
+        public Nullable<int> idparent { get; set; }
         public string idempresa { get; set; }
-        public string idactividad { get; set; }
         public string idusuario { get; set; }
         public string descripcion { get; set; }
         public string abreviatura { get; set; }
-        public string unimedida { get; set; }
+        public int unimedida { get; set; }
         public decimal costo1 { get; set; }
         public System.DateTime fechacreacion { get; set; }
         public Nullable<System.DateTime> fechacambio { get; set; }
     
-        public virtual TablaCultivos TablaCultivos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlantillaCultivoDetalle> PlantillaCultivoDetalle { get; set; }
+        public virtual TablaCultivos TablaCultivos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TablaActividades> TablaActividades1 { get; set; }
+        public virtual TablaActividades TablaActividades2 { get; set; }
     }
 }

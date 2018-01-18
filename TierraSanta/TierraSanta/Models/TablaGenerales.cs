@@ -12,18 +12,15 @@ namespace TierraSanta.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PlantillaCultivoDetalle
+    public partial class TablaGenerales
     {
-        public string idempresa { get; set; }
-        public int idplantilla { get; set; }
-        public int idplantilladetalle { get; set; }
-        public int idactividad { get; set; }
+        public string idcodigo { get; set; }
         public string idusuario { get; set; }
-        public decimal cantidad { get; set; }
-        public System.DateTime fechacreacion { get; set; }
-        public Nullable<System.DateTime> fechacambio { get; set; }
-    
-        public virtual PlantillaCultivoCabecera PlantillaCultivoCabecera { get; set; }
-        public virtual TablaActividades TablaActividades { get; set; }
+        public string descripcion { get; set; }
+        public string abreviatura { get; set; }
+        public decimal valornum { get; set; }
+        public string valorchar { get; set; }
+        public string estado { get; set; }
+        public System.DateTime fechacambio { get; set; }
     }
 }

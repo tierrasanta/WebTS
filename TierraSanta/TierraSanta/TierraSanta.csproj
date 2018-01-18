@@ -219,11 +219,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ActividadesFertilizanteController.cs" />
-    <Compile Include="Controllers\ActividadesInsumoController.cs" />
-    <Compile Include="Controllers\ActividadesManodeObraController.cs" />
-    <Compile Include="Controllers\ActividadesMaquinariaController.cs" />
-    <Compile Include="Controllers\ActividadesPesticidaController.cs" />
     <Compile Include="Controllers\FundosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LotesController.cs" />
@@ -233,7 +228,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\Pager.cs" />
+    <Compile Include="Models\CuentaContable.cs">
+      <DependentUpon>ModelTierraSanta.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cultivo.cs">
+      <DependentUpon>ModelTierraSanta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetalleVM.cs" />
+    <Compile Include="Models\Empresa.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fundo.cs">
@@ -257,16 +259,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelTierraSanta.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ParametroGenerales.cs">
+      <DependentUpon>ModelTierraSanta.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PlantillaCultivoCabecera.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PlantillaCultivoDetalle.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelTierraSanta.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TablaActividades.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TablaCultivos.cs">
+      <DependentUpon>ModelTierraSanta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TablaGenerales.cs">
+      <DependentUpon>ModelTierraSanta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ubicaciones.cs">
       <DependentUpon>ModelTierraSanta.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -7432,31 +7446,6 @@
     <Content Include="Views\Lotes\Details.cshtml" />
     <Content Include="Views\Lotes\Edit.cshtml" />
     <Content Include="Views\Lotes\Index.cshtml" />
-    <Content Include="Views\ActividadesManodeObra\Create.cshtml" />
-    <Content Include="Views\ActividadesManodeObra\Delete.cshtml" />
-    <Content Include="Views\ActividadesManodeObra\Details.cshtml" />
-    <Content Include="Views\ActividadesManodeObra\Edit.cshtml" />
-    <Content Include="Views\ActividadesManodeObra\Index.cshtml" />
-    <Content Include="Views\ActividadesMaquinaria\Create.cshtml" />
-    <Content Include="Views\ActividadesMaquinaria\Delete.cshtml" />
-    <Content Include="Views\ActividadesMaquinaria\Details.cshtml" />
-    <Content Include="Views\ActividadesMaquinaria\Edit.cshtml" />
-    <Content Include="Views\ActividadesMaquinaria\Index.cshtml" />
-    <Content Include="Views\ActividadesFertilizante\Create.cshtml" />
-    <Content Include="Views\ActividadesFertilizante\Delete.cshtml" />
-    <Content Include="Views\ActividadesFertilizante\Details.cshtml" />
-    <Content Include="Views\ActividadesFertilizante\Edit.cshtml" />
-    <Content Include="Views\ActividadesFertilizante\Index.cshtml" />
-    <Content Include="Views\ActividadesPesticida\Create.cshtml" />
-    <Content Include="Views\ActividadesPesticida\Delete.cshtml" />
-    <Content Include="Views\ActividadesPesticida\Details.cshtml" />
-    <Content Include="Views\ActividadesPesticida\Edit.cshtml" />
-    <Content Include="Views\ActividadesPesticida\Index.cshtml" />
-    <Content Include="Views\ActividadesInsumo\Create.cshtml" />
-    <Content Include="Views\ActividadesInsumo\Delete.cshtml" />
-    <Content Include="Views\ActividadesInsumo\Details.cshtml" />
-    <Content Include="Views\ActividadesInsumo\Edit.cshtml" />
-    <Content Include="Views\ActividadesInsumo\Index.cshtml" />
     <Content Include="Views\PlantillaCultivoCabeceras\Create.cshtml" />
     <Content Include="Views\PlantillaCultivoCabeceras\Delete.cshtml" />
     <Content Include="Views\PlantillaCultivoCabeceras\Details.cshtml" />

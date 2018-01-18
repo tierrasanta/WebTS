@@ -15,57 +15,71 @@
                 </div>
                 <div class="box-body">
                     <h4 class="text-danger">¿Estás seguro que quieres eliminar esto?</h4>
-                    <dl class="dl-horizontal">
-                        <dt>
-                            Plantilla
-                        </dt>
+				 <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idempresa)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.PlantillaCultivoCabecera.descripcion)
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.idempresa)
+        </dd>
 
-                        <dt>
-                            Actividad
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.idusuario)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.TablaActividades.descripcion)
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.idusuario)
+        </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cantidad)
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cantidad)
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
 
-                        <dt>
-                            Fecha de creacion
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.fechacreacion)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.fechacreacion)
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.fechacreacion)
+        </dd>
 
-                        <dt>
-                            Fecha de cambio
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.fechacambio)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.fechacambio)
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.fechacambio)
+        </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantillaCultivoCabecera.idempresa)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.PlantillaCultivoCabecera.idempresa)
+        </dd>
 
-                    </dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.TablaActividades.idempresa)
+        </dt>
 
-                    @using (Html.BeginForm())
+        <dd>
+            @Html.DisplayFor(model => model.TablaActividades.idempresa)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
 
                         <div class="form-actions no-color">
-                            <input type="submit" value="Delete" class="btn btn-primary" />
+                            <input type="submit" value="Delete" class="btn btn-primary" /> 
                             @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
                         </div>
                     }

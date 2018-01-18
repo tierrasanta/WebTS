@@ -1,4 +1,4 @@
-﻿@model TierraSanta.Controllers.PlantillaCultivoDetalleIndexViewModel
+﻿@model TierraSanta.Models.PlantillaCultivoDetalleIndexViewModel
 
 @{
     ViewBag.Title = "Lista";
@@ -35,31 +35,36 @@
 <table class="table table-bordered table-striped">
     <tr>
         <th>
-            Plantilla
+            @Html.DisplayNameFor(model => model.Items[0].idempresa)
         </th>
         <th>
-            Actividad
+            @Html.DisplayNameFor(model => model.Items[0].idusuario)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Items[0].cantidad)
         </th>
         <th>
-            Fecha de Creacion
+            @Html.DisplayNameFor(model => model.Items[0].fechacreacion)
         </th>
         <th>
-            Fecha de Cambio
+            @Html.DisplayNameFor(model => model.Items[0].fechacambio)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].PlantillaCultivoCabecera.idempresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Items[0].TablaActividades.idempresa)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model.Items) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.PlantillaCultivoCabecera.descripcion)
+            @Html.DisplayFor(modelItem => item.idempresa)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TablaActividades.descripcion)
+            @Html.DisplayFor(modelItem => item.idusuario)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.cantidad)
@@ -70,11 +75,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.fechacambio)
         </td>
-
         <td>
-            @Html.ActionLink("Detalle", "Details", new { id = item.idempresa, id2 = item.idplantilla, id3 = item.idactividad }, new { @class = "btn btn-primary btn-xs" })
-            @Html.ActionLink("Editar", "Edit", new { id = item.idempresa, id2 = item.idplantilla, id3 = item.idactividad }, new { @class = "btn btn-success btn-xs" })
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.idempresa, id2 = item.idplantilla, id3 = item.idactividad }, new { @class = "btn btn-danger btn-xs" })
+            @Html.DisplayFor(modelItem => item.PlantillaCultivoCabecera.idempresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TablaActividades.idempresa)
+        </td>
+        <td>
+			<a class="btn btn-primary btn-xs" href="@Url.Action("Details", new { id=item.idplantilladetalle })">
+				<i class="fa fa-file" aria-hidden="true"></i> Detalle
+            </a>
+			<a class="btn btn-success btn-xs" href="@Url.Action("Edit", new { id=item.idplantilladetalle })">
+				<i class="fa fa-pencil" aria-hidden="true"></i> Editar
+            </a>
+			<a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id=item.idplantilladetalle })">
+				<i class="fa fa-trash" aria-hidden="true"></i> Eliminar
+            </a>
         </td>
     </tr>
 }

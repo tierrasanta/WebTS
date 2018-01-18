@@ -12,17 +12,12 @@ namespace TierraSanta.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cultivo
+    public partial class sysdiagrams
     {
-        public string idempresa { get; set; }
-        public string idfinca { get; set; }
-        public string idlote { get; set; }
-        public string idusuario { get; set; }
-        public string idcodigo { get; set; }
-        public decimal area { get; set; }
-        public System.DateTime fechainicio { get; set; }
-        public System.DateTime fechafin { get; set; }
-        public System.DateTime fechacreacion { get; set; }
-        public Nullable<System.DateTime> fechacambio { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

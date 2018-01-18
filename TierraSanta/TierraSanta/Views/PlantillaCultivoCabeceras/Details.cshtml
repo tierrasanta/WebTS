@@ -16,7 +16,15 @@
                 <div class="box-body">
                     <dl class="dl-horizontal">
                         <dt>
-                            Nombre de la plantilla
+                            @Html.DisplayNameFor(model => model.idempresa)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.idempresa)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.descripcion)
                         </dt>
 
                         <dd>
@@ -24,7 +32,15 @@
                         </dd>
 
                         <dt>
-                           Fecha de creacion
+                            @Html.DisplayNameFor(model => model.idusuario)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.idusuario)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fechacreacion)
                         </dt>
 
                         <dd>
@@ -32,7 +48,7 @@
                         </dd>
 
                         <dt>
-                            Fecha de cambio
+                            @Html.DisplayNameFor(model => model.fechacambio)
                         </dt>
 
                         <dd>
@@ -40,16 +56,38 @@
                         </dd>
 
                     </dl>
+
+                    @foreach (var detalle in ViewBag.Detalles)
+    {
+                <h4>@detalle.NombreActividad</h4>
+                <a href="/PlantillaCultivoDetalles/Create?idplantilla=@detalle.IdCabecera&idactividades=@detalle.IdActividad">Agregar</a>
+                <table class="table">
+                    @foreach (var item in detalle.detalle)
+    {
+                <tr>
+                    <td>@item.TablaActividades.descripcion</td>
+                    <td>@item.cantidad</td>
+                    <td>@item.TablaActividades.TablaCultivos.descripcion</td>
+                    <td><a href="/PlantillaCultivoDetalles/Delete/@item.idplantilladetalle">Eliminar</a></td>
+                
+                
+                </tr>
+}
+                </table>
+}
+
+
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
 
-                            @Html.ActionLink("Edita", "Edit", new { id = Model.idempresa, id2 = Model.idplantilla }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Edita", "Edit", new { id = Model.idplantilla }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
 
 
                         </div>
                     </div>
-                </div>
+                </div>                
             </div>
         </div>
     </div>

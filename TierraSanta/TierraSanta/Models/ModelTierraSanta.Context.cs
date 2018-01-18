@@ -25,12 +25,18 @@ namespace TierraSanta.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CuentaContable> CuentaContable { get; set; }
+        public virtual DbSet<Cultivo> Cultivo { get; set; }
+        public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<Fundo> Fundo { get; set; }
         public virtual DbSet<Lote> Lote { get; set; }
-        public virtual DbSet<TablaActividades> TablaActividades { get; set; }
-        public virtual DbSet<TablaCultivos> TablaCultivos { get; set; }
-        public virtual DbSet<Cultivo> Cultivo { get; set; }
+        public virtual DbSet<ParametroGenerales> ParametroGenerales { get; set; }
         public virtual DbSet<PlantillaCultivoCabecera> PlantillaCultivoCabecera { get; set; }
         public virtual DbSet<PlantillaCultivoDetalle> PlantillaCultivoDetalle { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TablaActividades> TablaActividades { get; set; }
+        public virtual DbSet<TablaCultivos> TablaCultivos { get; set; }
+        public virtual DbSet<TablaGenerales> TablaGenerales { get; set; }
+        public virtual DbSet<Ubicaciones> Ubicaciones { get; set; }
     }
 }
