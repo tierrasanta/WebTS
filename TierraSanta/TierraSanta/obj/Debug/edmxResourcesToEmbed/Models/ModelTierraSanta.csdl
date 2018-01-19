@@ -109,7 +109,7 @@
     <Property Name="idfundo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
     <Property Name="idusuario" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
     <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="fechacambio" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Lote" Relationship="ModelTierraSanta.FK_LOTE_FINCA" FromRole="Fundo" ToRole="Lote" />
   </EntityType>
@@ -125,7 +125,7 @@
     <Property Name="idusuario" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
     <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="area" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="fechacambio" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Fundo" Relationship="ModelTierraSanta.FK_LOTE_FINCA" FromRole="Lote" ToRole="Fundo" />
   </EntityType>
@@ -171,7 +171,7 @@
     <Property Name="idplantilladetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="idactividad" Type="Int32" Nullable="false" />
     <Property Name="idusuario" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-    <Property Name="cantidad" Type="Decimal" Nullable="false" Precision="18" Scale="9" />
+    <Property Name="cantidad" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="fechacambio" Type="DateTime" Precision="3" />
     <NavigationProperty Name="PlantillaCultivoCabecera" Relationship="ModelTierraSanta.FK_PLANTILLADETALLE_PLANTILLACABECERA" FromRole="PlantillaCultivoDetalle" ToRole="PlantillaCultivoCabecera" />
@@ -198,7 +198,7 @@
     <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="abreviatura" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
     <Property Name="unimedida" Type="Int32" Nullable="false" />
-    <Property Name="costo1" Type="Decimal" Nullable="false" Precision="18" Scale="9" />
+    <Property Name="costo1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="fechacambio" Type="DateTime" Precision="3" />
     <NavigationProperty Name="PlantillaCultivoDetalle" Relationship="ModelTierraSanta.FK_PLANTILLADETALLE_ACTIVIDADES" FromRole="TablaActividades" ToRole="PlantillaCultivoDetalle" />
