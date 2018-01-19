@@ -12,7 +12,7 @@
     <Property Name="cuentaanterior" Type="char" MaxLength="8" Nullable="false" />
     <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="fechacambio" Type="datetime" Nullable="false" />
+    <Property Name="fechacambio" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
     <Property Name="resultado" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="ctacargo" Type="char" MaxLength="8" Nullable="false" />
     <Property Name="ctaabono" Type="char" MaxLength="8" Nullable="false" />
@@ -59,9 +59,9 @@
     <Property Name="razonsocial" Type="nvarchar" MaxLength="60" Nullable="false" />
     <Property Name="direccion" Type="nvarchar" MaxLength="60" Nullable="false" />
     <Property Name="Abreviatura" Type="nvarchar" MaxLength="35" Nullable="false" />
-    <Property Name="fechainicio" Type="datetime" Nullable="false" />
+    <Property Name="fechainicio" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
     <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="fechacambio" Type="datetime" Nullable="false" />
+    <Property Name="fechacambio" Type="datetime" />
     <Property Name="logotipo" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="fondo" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>

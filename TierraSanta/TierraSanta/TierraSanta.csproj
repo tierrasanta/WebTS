@@ -220,9 +220,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActividadesFertilizanteController.cs" />
+    <Compile Include="Controllers\ActividadesInsumosController.cs" />
     <Compile Include="Controllers\ActividadesManodeObraController.cs" />
     <Compile Include="Controllers\ActividadesMaquinariaController.cs" />
     <Compile Include="Controllers\ActividadesPesticidaController.cs" />
+    <Compile Include="Controllers\CuentasContableController.cs" />
+    <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\FundosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LotesController.cs" />
@@ -7480,6 +7483,21 @@
     <Content Include="Views\ActividadesPesticida\Details.cshtml" />
     <Content Include="Views\ActividadesPesticida\Edit.cshtml" />
     <Content Include="Views\ActividadesPesticida\Index.cshtml" />
+    <Content Include="Views\ActividadesInsumos\Create.cshtml" />
+    <Content Include="Views\ActividadesInsumos\Delete.cshtml" />
+    <Content Include="Views\ActividadesInsumos\Details.cshtml" />
+    <Content Include="Views\ActividadesInsumos\Edit.cshtml" />
+    <Content Include="Views\ActividadesInsumos\Index.cshtml" />
+    <Content Include="Views\Empresas\Create.cshtml" />
+    <Content Include="Views\Empresas\Delete.cshtml" />
+    <Content Include="Views\Empresas\Details.cshtml" />
+    <Content Include="Views\Empresas\Edit.cshtml" />
+    <Content Include="Views\Empresas\Index.cshtml" />
+    <Content Include="Views\CuentasContable\Create.cshtml" />
+    <Content Include="Views\CuentasContable\Delete.cshtml" />
+    <Content Include="Views\CuentasContable\Details.cshtml" />
+    <Content Include="Views\CuentasContable\Edit.cshtml" />
+    <Content Include="Views\CuentasContable\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

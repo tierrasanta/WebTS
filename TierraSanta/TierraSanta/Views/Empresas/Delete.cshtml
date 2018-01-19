@@ -1,7 +1,7 @@
-﻿@model TierraSanta.Models.TablaActividades
+﻿@model TierraSanta.Models.Empresa
 
 @{
-    ViewBag.Title = "Detalle";
+    ViewBag.Title = "Eliminar";
 }
 
 
@@ -11,53 +11,53 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">TablaActividades</h3>
+                    <h3 class="box-title">Eliminar Empresa</h3>
                 </div>
                 <div class="box-body">
+                    <h4 class="text-danger">¿Estás seguro que quieres eliminar esto?</h4>
                     <dl class="dl-horizontal">
-
                         <dt>
-                            @Html.DisplayNameFor(model => model.descripcion)
+                            @Html.DisplayNameFor(model => model.ruc)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.descripcion)
+                            @Html.DisplayFor(model => model.ruc)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.abreviatura)
+                            @Html.DisplayNameFor(model => model.razonsocial)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.abreviatura)
+                            @Html.DisplayFor(model => model.razonsocial)
                         </dd>
 
                         <dt>
-                            Unidad de medida
+                            @Html.DisplayNameFor(model => model.direccion)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.TablaCultivos.descripcion)
+                            @Html.DisplayFor(model => model.direccion)
                         </dd>
 
                         <dt>
-                            Costo
+                            @Html.DisplayNameFor(model => model.Abreviatura)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.costo1)
+                            @Html.DisplayFor(model => model.Abreviatura)
                         </dd>
 
                         <dt>
-                            Fecha de creacion
+                            @Html.DisplayNameFor(model => model.fechainicio)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.fechacreacion)
+                            @Html.DisplayFor(model => model.fechainicio)
                         </dd>
 
                         <dt>
-                            Fecha de cambio
+                            @Html.DisplayNameFor(model => model.fechacambio)
                         </dt>
 
                         <dd>
@@ -65,19 +65,18 @@
                         </dd>
 
                     </dl>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
 
-                            @Html.ActionLink("Editar", "Edit", new { id = Model.idactividades }, new { @class = "btn btn-primary" })
+    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-primary" /> 
                             @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-
-

@@ -17,7 +17,7 @@
           <Property Name="cuentaanterior" Type="char" MaxLength="8" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="fechacambio" Type="datetime" Nullable="false" />
+          <Property Name="fechacambio" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="resultado" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="ctacargo" Type="char" MaxLength="8" Nullable="false" />
           <Property Name="ctaabono" Type="char" MaxLength="8" Nullable="false" />
@@ -64,9 +64,9 @@
           <Property Name="razonsocial" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="direccion" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="Abreviatura" Type="nvarchar" MaxLength="35" Nullable="false" />
-          <Property Name="fechainicio" Type="datetime" Nullable="false" />
+          <Property Name="fechainicio" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="fechacambio" Type="datetime" Nullable="false" />
+          <Property Name="fechacambio" Type="datetime" />
           <Property Name="logotipo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="fondo" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -353,7 +353,7 @@
           <Property Name="cuentaanterior" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
           <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fechacambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechacambio" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="resultado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="ctacargo" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
           <Property Name="ctaabono" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
@@ -400,9 +400,9 @@
           <Property Name="razonsocial" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="Abreviatura" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="true" />
-          <Property Name="fechainicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechainicio" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fechacambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechacambio" Type="DateTime" Precision="3" />
           <Property Name="logotipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fondo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>

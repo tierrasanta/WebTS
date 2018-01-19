@@ -30,7 +30,7 @@ namespace TierraSanta.Models
         public string Abreviatura { get; set; }
         public System.DateTime fechainicio { get; set; }
         public string estado { get; set; }
-        public System.DateTime fechacambio { get; set; }
+        public Nullable<System.DateTime> fechacambio { get; set; }
         public string logotipo { get; set; }
         public string fondo { get; set; }
     }
