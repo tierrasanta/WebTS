@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_9D8B6E_tierrasantaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CuentaContable">
+    <Key>
+      <PropertyRef Name="idempresa" />
+      <PropertyRef Name="idcuenta" />
+    </Key>
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idcuenta" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="cuenta" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cuentaanterior" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fechacambio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="resultado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ctacargo" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ctaabono" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="porcentajecargo" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="porcentajeabono" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="idespecial" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idrendicion" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="iddetalle" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idunegocio" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idgrupo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cultivo">
+    <Key>
+      <PropertyRef Name="idempresa" />
+      <PropertyRef Name="idfinca" />
+      <PropertyRef Name="idlote" />
+    </Key>
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idfinca" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idlote" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idcodigo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="area" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="fechainicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechafin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Empresa">
+    <Key>
+      <PropertyRef Name="idempresa" />
+    </Key>
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idubicacion" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idpersoneria" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idregimen" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idtipo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idmoneda" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idcomision" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="control" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="parametros" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ruc" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="razonsocial" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Abreviatura" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fechainicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+    <Property Name="logotipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fondo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fundo">
+    <Key>
+      <PropertyRef Name="idempresa" />
+      <PropertyRef Name="idfundo" />
+    </Key>
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idfundo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Lote" Relationship="Self.FK_LOTE_FINCA" FromRole="Fundo" ToRole="Lote" />
+  </EntityType>
+  <EntityType Name="Lote">
+    <Key>
+      <PropertyRef Name="idempresa" />
+      <PropertyRef Name="idfundo" />
+      <PropertyRef Name="idlote" />
+    </Key>
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idfundo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idlote" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="area" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Fundo" Relationship="Self.FK_LOTE_FINCA" FromRole="Lote" ToRole="Fundo" />
+  </EntityType>
+  <EntityType Name="ParametroGenerales">
+    <Key>
+      <PropertyRef Name="idparametro" />
+      <PropertyRef Name="idcodigo" />
+      <PropertyRef Name="idtipo" />
+      <PropertyRef Name="periodo" />
+    </Key>
+    <Property Name="idparametro" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idcodigo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idtipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="periodo" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idconcepto" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="monto" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+    <Property Name="porcentaje" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+    <Property Name="cantidad" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fechacambio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="maximo" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+    <Property Name="minimo" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlantillaCultivoCabecera">
+    <Key>
+      <PropertyRef Name="idplantilla" />
+    </Key>
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idplantilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PlantillaCultivoDetalle" Relationship="Self.FK_PLANTILLADETALLE_PLANTILLACABECERA" FromRole="PlantillaCultivoCabecera" ToRole="PlantillaCultivoDetalle" />
+  </EntityType>
+  <EntityType Name="PlantillaCultivoDetalle">
+    <Key>
+      <PropertyRef Name="idplantilladetalle" />
+    </Key>
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idplantilla" Type="Int32" Nullable="false" />
+    <Property Name="idplantilladetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idactividad" Type="Int32" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PlantillaCultivoCabecera" Relationship="Self.FK_PLANTILLADETALLE_PLANTILLACABECERA" FromRole="PlantillaCultivoDetalle" ToRole="PlantillaCultivoCabecera" />
+    <NavigationProperty Name="TablaActividades" Relationship="Self.FK_PLANTILLADETALLE_ACTIVIDADES" FromRole="PlantillaCultivoDetalle" ToRole="TablaActividades" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TablaActividades">
+    <Key>
+      <PropertyRef Name="idactividades" />
+    </Key>
+    <Property Name="idactividades" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idparent" Type="Int32" />
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="abreviatura" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="unimedida" Type="Int32" Nullable="false" />
+    <Property Name="costo1" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PlantillaCultivoDetalle" Relationship="Self.FK_PLANTILLADETALLE_ACTIVIDADES" FromRole="TablaActividades" ToRole="PlantillaCultivoDetalle" />
+    <NavigationProperty Name="TablaCultivos" Relationship="Self.FK_ACTIVIDADES_TABLACULTIVOS" FromRole="TablaActividades" ToRole="TablaCultivos" />
+    <NavigationProperty Name="TablaActividades1" Relationship="Self.FK_TablaActividades_TablaActividades" FromRole="TablaActividades" ToRole="TablaActividades1" />
+    <NavigationProperty Name="TablaActividades2" Relationship="Self.FK_TablaActividades_TablaActividades" FromRole="TablaActividades1" ToRole="TablaActividades" />
+  </EntityType>
+  <EntityType Name="TablaCultivos">
+    <Key>
+      <PropertyRef Name="pktablacultivos" />
+    </Key>
+    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="pktablacultivos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idcodigo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="abreviatura" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="valornum" Type="Decimal" Precision="26" Scale="6" Nullable="false" />
+    <Property Name="valorchar" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TablaActividades" Relationship="Self.FK_ACTIVIDADES_TABLACULTIVOS" FromRole="TablaCultivos" ToRole="TablaActividades" />
+  </EntityType>
+  <EntityType Name="TablaGenerales">
+    <Key>
+      <PropertyRef Name="idcodigo" />
+    </Key>
+    <Property Name="idcodigo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="abreviatura" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="valornum" Type="Decimal" Precision="12" Scale="6" Nullable="false" />
+    <Property Name="valorchar" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fechacambio" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Ubicaciones">
+    <Key>
+      <PropertyRef Name="idubicacion" />
+    </Key>
+    <Property Name="idubicacion" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ubicacion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fechacambio" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_LOTE_FINCA">
+    <End Role="Fundo" Type="Self.Fundo" Multiplicity="1" />
+    <End Role="Lote" Type="Self.Lote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fundo">
+        <PropertyRef Name="idempresa" />
+        <PropertyRef Name="idfundo" />
+      </Principal>
+      <Dependent Role="Lote">
+        <PropertyRef Name="idempresa" />
+        <PropertyRef Name="idfundo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLANTILLADETALLE_PLANTILLACABECERA">
+    <End Role="PlantillaCultivoCabecera" Type="Self.PlantillaCultivoCabecera" Multiplicity="1" />
+    <End Role="PlantillaCultivoDetalle" Type="Self.PlantillaCultivoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlantillaCultivoCabecera">
+        <PropertyRef Name="idplantilla" />
+      </Principal>
+      <Dependent Role="PlantillaCultivoDetalle">
+        <PropertyRef Name="idplantilla" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLANTILLADETALLE_ACTIVIDADES">
+    <End Role="TablaActividades" Type="Self.TablaActividades" Multiplicity="1" />
+    <End Role="PlantillaCultivoDetalle" Type="Self.PlantillaCultivoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TablaActividades">
+        <PropertyRef Name="idactividades" />
+      </Principal>
+      <Dependent Role="PlantillaCultivoDetalle">
+        <PropertyRef Name="idactividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACTIVIDADES_TABLACULTIVOS">
+    <End Role="TablaCultivos" Type="Self.TablaCultivos" Multiplicity="1" />
+    <End Role="TablaActividades" Type="Self.TablaActividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TablaCultivos">
+        <PropertyRef Name="pktablacultivos" />
+      </Principal>
+      <Dependent Role="TablaActividades">
+        <PropertyRef Name="unimedida" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TablaActividades_TablaActividades">
+    <End Role="TablaActividades" Type="Self.TablaActividades" Multiplicity="0..1" />
+    <End Role="TablaActividades1" Type="Self.TablaActividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TablaActividades">
+        <PropertyRef Name="idactividades" />
+      </Principal>
+      <Dependent Role="TablaActividades1">
+        <PropertyRef Name="idparent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EntitiesTierraSanta" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CuentaContable" EntityType="Self.CuentaContable" />
+    <EntitySet Name="Cultivo" EntityType="Self.Cultivo" />
+    <EntitySet Name="Empresa" EntityType="Self.Empresa" />
+    <EntitySet Name="Fundo" EntityType="Self.Fundo" />
+    <EntitySet Name="Lote" EntityType="Self.Lote" />
+    <EntitySet Name="ParametroGenerales" EntityType="Self.ParametroGenerales" />
+    <EntitySet Name="PlantillaCultivoCabecera" EntityType="Self.PlantillaCultivoCabecera" />
+    <EntitySet Name="PlantillaCultivoDetalle" EntityType="Self.PlantillaCultivoDetalle" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TablaActividades" EntityType="Self.TablaActividades" />
+    <EntitySet Name="TablaCultivos" EntityType="Self.TablaCultivos" />
+    <EntitySet Name="TablaGenerales" EntityType="Self.TablaGenerales" />
+    <EntitySet Name="Ubicaciones" EntityType="Self.Ubicaciones" />
+    <AssociationSet Name="FK_LOTE_FINCA" Association="Self.FK_LOTE_FINCA">
+      <End Role="Fundo" EntitySet="Fundo" />
+      <End Role="Lote" EntitySet="Lote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLANTILLADETALLE_PLANTILLACABECERA" Association="Self.FK_PLANTILLADETALLE_PLANTILLACABECERA">
+      <End Role="PlantillaCultivoCabecera" EntitySet="PlantillaCultivoCabecera" />
+      <End Role="PlantillaCultivoDetalle" EntitySet="PlantillaCultivoDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLANTILLADETALLE_ACTIVIDADES" Association="Self.FK_PLANTILLADETALLE_ACTIVIDADES">
+      <End Role="TablaActividades" EntitySet="TablaActividades" />
+      <End Role="PlantillaCultivoDetalle" EntitySet="PlantillaCultivoDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACTIVIDADES_TABLACULTIVOS" Association="Self.FK_ACTIVIDADES_TABLACULTIVOS">
+      <End Role="TablaCultivos" EntitySet="TablaCultivos" />
+      <End Role="TablaActividades" EntitySet="TablaActividades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TablaActividades_TablaActividades" Association="Self.FK_TablaActividades_TablaActividades">
+      <End Role="TablaActividades" EntitySet="TablaActividades" />
+      <End Role="TablaActividades1" EntitySet="TablaActividades" />
+    </AssociationSet>
+    <EntitySet Name="Usuario" EntityType="DB_9D8B6E_tierrasantaModel.Usuario" />
+  </EntityContainer>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="UsuarioId" />
+    </Key>
+    <Property Name="UsuarioId" Type="Guid" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <Property Name="EsAdministrador" Type="Boolean" Nullable="false" />
+    <Property Name="Creado" Type="DateTime" Precision="3" />
+    <Property Name="Modificado" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>
