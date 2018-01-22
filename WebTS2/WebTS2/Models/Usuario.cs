@@ -11,10 +11,7 @@ namespace WebTS2.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using Validacion;
-
-    [MetadataType(typeof(UsuarioValidacion))]
+    
     public partial class Usuario
     {
         public System.Guid UsuarioId { get; set; }
