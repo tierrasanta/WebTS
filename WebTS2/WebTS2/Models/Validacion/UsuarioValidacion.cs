@@ -6,6 +6,7 @@ using System.Web;
 
 namespace WebTS2.Models.Validacion
 {
+    //[MetadataType(typeof(UsuarioValidacion))]
     public class UsuarioValidacion
     {
         [Required]
