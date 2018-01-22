@@ -1,0 +1,100 @@
+﻿@model WebTS2.Models.Usuario
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Usuario</h3>
+                </div>
+                <div class="box-body">
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsAdministrador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsAdministrador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Creado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modificado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modificado)
+        </dd>
+
+     </dl>
+<div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+
+	    @Html.ActionLink("Edita", "Edit", new { id = Model.UsuarioId }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default"})
+               
+                           
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

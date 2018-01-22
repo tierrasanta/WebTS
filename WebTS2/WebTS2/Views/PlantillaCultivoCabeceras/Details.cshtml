@@ -1,0 +1,99 @@
+﻿@model WebTS2.Models.PlantillaCultivoCabecera
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">PlantillaCultivoCabecera</h3>
+                </div>
+                <div class="box-body">
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fechacreacion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fechacreacion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fechacambio)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fechacambio)
+                        </dd>
+
+                    </dl>
+
+                    @foreach (var detalle in ViewBag.Detalles)
+                    {
+                        <hr size ="10"/>
+                        <h4>@detalle.NombreActividad</h4>
+                        
+                        <a class="btn btn-primary btn-xs" href="/PlantillaCultivoDetalles/Create?idplantilla=@detalle.IdCabecera&idactividades=@detalle.IdActividad">Agregar</a>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>
+                                    Actividad
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>
+                                <th>
+                                    Unidad de Medida
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                            @foreach (var item in detalle.detalle)
+                            {
+                                <tr>
+                                    <td width="25%">@item.TablaActividades.descripcion</td>
+                                    <td width="25%">@item.cantidad</td>
+                                    <td width="25%">@item.TablaActividades.TablaCultivos.descripcion</td>
+                                    <td width="25%"><a class="btn btn-danger btn-xs" href="/PlantillaCultivoDetalles/Delete/@item.idplantilladetalle">Eliminar</a></td>
+
+
+                                </tr>
+                            }
+                        </table>
+                    }
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+
+                            @Html.ActionLink("Edita", "Edit", new { id = Model.idplantilla }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
