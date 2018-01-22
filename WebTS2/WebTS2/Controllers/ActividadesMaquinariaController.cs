@@ -31,8 +31,8 @@ namespace WebTS2.Controllers
         public ActionResult Index(int? page, String Search)
         {
             var viewModel = new ActividadesMaquinariaIndexViewModel();
-            var pager = new Pager(db.TablaActividades.Where(x => x.idparent == 2).Count(), page);
-            viewModel.Items = db.TablaActividades.Where(x => x.idparent == 2).Include(t => t.TablaCultivos).Include(t => t.TablaActividades2)
+            var pager = new Pager(db.TablaActividades.Where(x => x.idparent == 2 && x.abreviatura != "").Count(), page);
+            viewModel.Items = db.TablaActividades.Where(x => x.idparent == 2 && x.abreviatura != "").Include(t => t.TablaCultivos).Include(t => t.TablaActividades2)
                     .OrderBy(c => c.idactividades)
                     .Skip((pager.CurrentPage - 1) * pager.PageSize)
                     .Take(pager.PageSize).ToList();
@@ -110,6 +110,7 @@ namespace WebTS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idactividades,idparent,idempresa,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio")] TablaActividades tablaActividades)
         {
+            tablaActividades.idparent = 2;
             tablaActividades.fechacambio = DateTime.Now;
             if (ModelState.IsValid)
             {
