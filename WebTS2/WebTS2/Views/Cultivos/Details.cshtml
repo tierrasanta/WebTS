@@ -69,7 +69,7 @@
 
                         <dd>
                             @Html.DisplayFor(model => model.fechacreacion)
-                        </dd>                       
+                        </dd>
 
                     </dl>
 
@@ -86,10 +86,10 @@
                                 </th>
                                 <th>
                                     Cantidad
-                                </th>   
+                                </th>
                                 <th>
                                     Fecha de llenado
-                                </th>                                
+                                </th>
                                 <th>
 
                                 </th>
@@ -99,8 +99,11 @@
                                 <tr>
                                     <td width="25%">@item.TablaActividades.descripcion</td>
                                     <td width="25%">@item.cantidad</td>
-                                    <td width="25%">@item.fechallenado</td>                                    
-                                    <td width="25%"><a class="btn btn-danger btn-xs" href="/CultivoDetalles/Delete/@item.idcultivodetalle">Eliminar</a></td>
+                                    <td width="25%">@item.fechallenado</td>
+                                    <td width="25%">
+                                        <a class="btn btn-success btn-xs" href="/CultivoDetalles/Edit/@item.idcultivodetalle">editar</a>
+                                        <a class="btn btn-danger btn-xs" href="/CultivoDetalles/Delete/@item.idcultivodetalle">Eliminar</a>
+                                    </td>
                                 </tr>
                             }
                         </table>

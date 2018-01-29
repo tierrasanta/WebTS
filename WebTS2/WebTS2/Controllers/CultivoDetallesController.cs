@@ -116,6 +116,7 @@ namespace WebTS2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idreturn = cultivoDetalle.idcultivo;
             ViewBag.idcultivo = new SelectList(db.Cultivo, "idcultivo", "idempresa", cultivoDetalle.idcultivo);
             ViewBag.idactividad = new SelectList(db.TablaActividades, "idactividades", "idempresa", cultivoDetalle.idactividad);
             return View(cultivoDetalle);
@@ -128,16 +129,16 @@ namespace WebTS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idempresa,idusuario,idcultivo,idcultivodetalle,idactividad,cantidad,fechallenado,fechacreacion,fechacambio")] CultivoDetalle cultivoDetalle)
         {
-
+            cultivoDetalle.fechacambio = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Entry(cultivoDetalle).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("details", "Cultivos", new { @id = cultivoDetalle.idcultivo });
             }
             ViewBag.idcultivo = new SelectList(db.Cultivo, "idcultivo", "idempresa", cultivoDetalle.idcultivo);
             ViewBag.idactividad = new SelectList(db.TablaActividades, "idactividades", "idempresa", cultivoDetalle.idactividad);
-            return View(cultivoDetalle);
+            return Edit(cultivoDetalle.idcultivodetalle);
         }
 
         // GET: CultivoDetalles/Delete/5

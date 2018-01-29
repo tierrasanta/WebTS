@@ -12,7 +12,7 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Agregar PlantillaCultivoDetalle</h3>
+                    <h3 class="box-title">Agregar Actividad</h3>
                 </div>
                 <div class="box-body">
 
@@ -22,18 +22,16 @@
 
                         <div class="form-horizontal">
 
-
-
-                            <div class="form-group" style="display:none">
+                            @*<div class="form-group" style="display:none">
                                 @Html.LabelFor(model => model.idplantilla, "idplantilla", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.DropDownList("idplantilla", null, htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.idplantilla, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
+                            </div>*@
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.idactividad, "idactividad", htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.idactividad, "Actividad", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.DropDownList("idactividad", null, htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.idactividad, "", new { @class = "text-danger" })
@@ -54,8 +52,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Grabar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+                                    <input type="submit" value="Grabar" class="btn btn-primary" />                                    
                                     <a class="btn btn-default" href="/PlantillaCultivoCabeceras/details?id=@ViewBag.idreturn">Cancelar</a>
                                 </div>
                             </div>

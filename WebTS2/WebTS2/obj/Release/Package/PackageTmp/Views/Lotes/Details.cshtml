@@ -17,14 +17,14 @@
                     <dl class="dl-horizontal">
 
                         <dt>
-                            Fundo
+                            @Html.DisplayNameFor(model => model.idfundo)
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.Fundo.descripcion)
                         </dd>
                         <dt>
-                            Lote
+                            @Html.DisplayNameFor(model => model.descripcion)
                         </dt>
 
                         <dd>
@@ -40,7 +40,7 @@
                         </dd>
 
                         <dt>
-                            Fecha de creacion
+                            @Html.DisplayNameFor(model => model.fechacreacion)
                         </dt>
 
                         <dd>
@@ -48,7 +48,7 @@
                         </dd>
 
                         <dt>
-                            Fecha de cambio
+                            @Html.DisplayNameFor(model => model.fechacambio)
                         </dt>
 
                         <dd>
@@ -58,21 +58,20 @@
 
 
                     </dl>
-<div class="form-group">
+                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
 
-	    @Html.ActionLink("Edita", "Edit", new { /* id = Model.PrimaryKey */ }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Cancelar", "Index",null , new { @class = "btn btn-default"})
-               
-                           
+                            @Html.ActionLink("Edita", "Edit", new {  id = Model.idempresa, id2 = Model.idfundo, id3 = Model.idlote  }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+
+
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
 </section>
-
 
 
 
