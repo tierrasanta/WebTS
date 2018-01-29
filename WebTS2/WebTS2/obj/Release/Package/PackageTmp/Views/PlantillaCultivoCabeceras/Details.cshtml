@@ -15,7 +15,9 @@
                 </div>
                 <div class="box-body">
                     <dl class="dl-horizontal">
-
+                        <dt>
+                           
+                        </dt>
                         <dt>
                             @Html.DisplayNameFor(model => model.descripcion)
                         </dt>
@@ -44,10 +46,11 @@
 
                     @foreach (var detalle in ViewBag.Detalles)
                     {
-                        <hr size ="10"/>
+                        <hr size="10" />
                         <h4>@detalle.NombreActividad</h4>
-                        
+
                         <a class="btn btn-primary btn-xs" href="/PlantillaCultivoDetalles/Create?idplantilla=@detalle.IdCabecera&idactividades=@detalle.IdActividad">Agregar</a>
+                        @*<a type="button" class="btn btn-sm btn-success" href="@Url.Action("ReportExcel" , new{id = Model.idplantilla})"> <i class="fa fa-file-excel-o"></i> Reporte Excel</a>*@
                         <table class="table table-bordered table-striped">
                             <tr>
                                 <th>

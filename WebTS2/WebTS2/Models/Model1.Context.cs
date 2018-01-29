@@ -26,7 +26,6 @@ namespace WebTS2.Models
         }
     
         public virtual DbSet<CuentaContable> CuentaContable { get; set; }
-        public virtual DbSet<Cultivo> Cultivo { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<Fundo> Fundo { get; set; }
         public virtual DbSet<Lote> Lote { get; set; }
@@ -39,5 +38,7 @@ namespace WebTS2.Models
         public virtual DbSet<TablaGenerales> TablaGenerales { get; set; }
         public virtual DbSet<Ubicaciones> Ubicaciones { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Cultivo> Cultivo { get; set; }
+        public virtual DbSet<CultivoDetalle> CultivoDetalle { get; set; }
     }
 }

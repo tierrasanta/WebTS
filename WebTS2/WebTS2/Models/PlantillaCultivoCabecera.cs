@@ -11,13 +11,17 @@ namespace WebTS2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using Validacion;
+
+    [MetadataType(typeof(PlantillaCabeceraValidacion))]
     public partial class PlantillaCultivoCabecera
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PlantillaCultivoCabecera()
         {
             this.PlantillaCultivoDetalle = new HashSet<PlantillaCultivoDetalle>();
+            this.Cultivo = new HashSet<Cultivo>();
         }
     
         public string idempresa { get; set; }
@@ -29,5 +33,7 @@ namespace WebTS2.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlantillaCultivoDetalle> PlantillaCultivoDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cultivo> Cultivo { get; set; }
     }
 }

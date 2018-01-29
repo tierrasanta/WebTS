@@ -34,54 +34,55 @@
                     </div>
                 </div>
                 <div class="box-body">
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>
-            Fundo
-        </th>
-        <th>
-            Lote
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Items[0].area)
-        </th>
-        <th>
-            Fecha de creacion
-        </th>
-        <th>
-            Fecha de cambio
-        </th>
-        
-        <th></th>
-    </tr>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Items[0].idfundo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Items[0].descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Items[0].area)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Items[0].fechacreacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Items[0].fechacambio)
+                            </th>
 
-@foreach (var item in Model.Items) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fundo.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.area)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechacreacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechacambio)
-        </td>       
-        <td>
-			@Html.ActionLink("Detalle", "Details", new { id = item.idempresa, id2 = item.idfundo, id3 = item.idlote }, new { @class = "btn btn-primary btn-xs"})
-            @Html.ActionLink("Editar", "Edit", new { id = item.idempresa, id2 = item.idfundo, id3 = item.idlote }, new { @class = "btn btn-success btn-xs"})
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.idempresa, id2 = item.idfundo, id3 = item.idlote }, new { @class = "btn btn-danger btn-xs"})
-        </td>
-    </tr>
-}
+                            <th></th>
+                        </tr>
 
-</table>
-<nav>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fundo.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.area)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fechacreacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fechacambio)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalle", "Details", new { id = item.idempresa, id2 = item.idfundo, id3 = item.idlote }, new { @class = "btn btn-primary btn-xs" })
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.idempresa, id2 = item.idfundo, id3 = item.idlote }, new { @class = "btn btn-success btn-xs" })
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.idempresa, id2 = item.idfundo, id3 = item.idlote }, new { @class = "btn btn-danger btn-xs" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    <nav>
                         <ul class="pagination pagination-sm">
                             @for (int x = 1; x < Model.Pager.TotalPages + 1; x++)
                             {
@@ -95,7 +96,7 @@
                                 }
                             }
                         </ul>
-                   </nav>
+                    </nav>
                 </div>
             </div>
         </div>

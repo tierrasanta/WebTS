@@ -25,22 +25,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Cultivo">
-      <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.Cultivo">
-        <MappingFragment StoreEntitySet="Cultivo">
-          <ScalarProperty Name="idempresa" ColumnName="idempresa" />
-          <ScalarProperty Name="idfinca" ColumnName="idfinca" />
-          <ScalarProperty Name="idlote" ColumnName="idlote" />
-          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
-          <ScalarProperty Name="idcodigo" ColumnName="idcodigo" />
-          <ScalarProperty Name="area" ColumnName="area" />
-          <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
-          <ScalarProperty Name="fechafin" ColumnName="fechafin" />
-          <ScalarProperty Name="fechacreacion" ColumnName="fechacreacion" />
-          <ScalarProperty Name="fechacambio" ColumnName="fechacambio" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Empresa">
       <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.Empresa">
         <MappingFragment StoreEntitySet="Empresa">
@@ -217,6 +201,38 @@
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cultivo">
+      <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.Cultivo">
+        <MappingFragment StoreEntitySet="Cultivo">
+          <ScalarProperty Name="fechacambio" ColumnName="fechacambio" />
+          <ScalarProperty Name="fechacreacion" ColumnName="fechacreacion" />
+          <ScalarProperty Name="fechafin" ColumnName="fechafin" />
+          <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="idplantilla" ColumnName="idplantilla" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idcultivo" ColumnName="idcultivo" />
+          <ScalarProperty Name="idlote" ColumnName="idlote" />
+          <ScalarProperty Name="idfundo" ColumnName="idfundo" />
+          <ScalarProperty Name="idempresa" ColumnName="idempresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CultivoDetalle">
+      <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.CultivoDetalle">
+        <MappingFragment StoreEntitySet="CultivoDetalle">
+          <ScalarProperty Name="fechacambio" ColumnName="fechacambio" />
+          <ScalarProperty Name="fechacreacion" ColumnName="fechacreacion" />
+          <ScalarProperty Name="fechallenado" ColumnName="fechallenado" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idactividad" ColumnName="idactividad" />
+          <ScalarProperty Name="idcultivodetalle" ColumnName="idcultivodetalle" />
+          <ScalarProperty Name="idcultivo" ColumnName="idcultivo" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idempresa" ColumnName="idempresa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

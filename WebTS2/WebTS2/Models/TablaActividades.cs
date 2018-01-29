@@ -11,7 +11,10 @@ namespace WebTS2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using Validacion;
+
+    [MetadataType(typeof(ActividadesValidacion))]
     public partial class TablaActividades
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,6 +22,7 @@ namespace WebTS2.Models
         {
             this.PlantillaCultivoDetalle = new HashSet<PlantillaCultivoDetalle>();
             this.TablaActividades1 = new HashSet<TablaActividades>();
+            this.CultivoDetalle = new HashSet<CultivoDetalle>();
         }
     
         public int idactividades { get; set; }
@@ -38,5 +42,7 @@ namespace WebTS2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TablaActividades> TablaActividades1 { get; set; }
         public virtual TablaActividades TablaActividades2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CultivoDetalle> CultivoDetalle { get; set; }
     }
 }

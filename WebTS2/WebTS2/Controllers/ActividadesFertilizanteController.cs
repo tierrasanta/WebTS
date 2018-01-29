@@ -16,9 +16,9 @@ using iTextSharp.text.pdf;
 namespace WebTS2.Controllers
 {
 
-	public class ActividadesFertilizanteIndexViewModel
+    public class ActividadesFertilizanteIndexViewModel
     {
-		public List<TablaActividades> Items { get; set; }
+        public List<TablaActividades> Items { get; set; }
         public Pager Pager { get; set; }
     }
 
@@ -26,19 +26,31 @@ namespace WebTS2.Controllers
     {
         private EntitiesTierraSanta db = new EntitiesTierraSanta();
 
-		
+
         // GET: ActividadesFertilizante
         public ActionResult Index(int? page, String Search)
         {
-		//
-			var viewModel = new ActividadesFertilizanteIndexViewModel();
-
-            var pager = new Pager(db.TablaActividades.Where(x => x.idparent == 3).Count(), page);
-            viewModel.Items = db.TablaActividades.Where(x => x.idparent == 3).Include(t => t.TablaCultivos).Include(t => t.TablaActividades2)
+            //
+            var viewModel = new ActividadesFertilizanteIndexViewModel();
+            if (Search == null || Search.Equals(""))
+            {
+                var pager = new Pager(db.TablaActividades.Where(x => x.idparent == 3 && x.abreviatura != "").Count(), page);
+                viewModel.Items = db.TablaActividades.Where(x => x.idparent == 3 && x.abreviatura != "").Include(t => t.TablaCultivos).Include(t => t.TablaActividades2)
+                        .OrderBy(c => c.idactividades)
+                        .Skip((pager.CurrentPage - 1) * pager.PageSize)
+                        .Take(pager.PageSize).ToList();
+                viewModel.Pager = pager;
+            }
+            else
+            {
+                var pager = new Pager(db.TablaActividades.Where(x => x.idparent == 3 && x.abreviatura != "" && x.descripcion.Contains(Search)).Count(), page);
+                viewModel.Items = db.TablaActividades.Where(x => x.idparent == 3 && x.abreviatura != "" && x.descripcion.Contains(Search)).Include(t => t.TablaCultivos).Include(t => t.TablaActividades2)
                     .OrderBy(c => c.idactividades)
                     .Skip((pager.CurrentPage - 1) * pager.PageSize)
                     .Take(pager.PageSize).ToList();
-            viewModel.Pager = pager;
+                viewModel.Pager = pager;
+                @ViewBag.Search = Search;
+            }
             return View(viewModel);
         }
 
@@ -78,7 +90,7 @@ namespace WebTS2.Controllers
             tablaActividades.idusuario = "0001";
 
             if (ModelState.IsValid)
-            {               
+            {
                 db.TablaActividades.Add(tablaActividades);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,10 +125,11 @@ namespace WebTS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idactividades,idparent,idempresa,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio")] TablaActividades tablaActividades)
         {
+            tablaActividades.idparent = 3;
             tablaActividades.fechacambio = DateTime.Now;
             if (ModelState.IsValid)
             {
-                db.Entry(tablaActividades).State = EntityState.Modified;				
+                db.Entry(tablaActividades).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

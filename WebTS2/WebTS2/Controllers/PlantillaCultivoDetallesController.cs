@@ -77,8 +77,9 @@ namespace WebTS2.Controllers
         {
             PlantillaCultivoDetalle plantillaCultivoDetalle = new PlantillaCultivoDetalle();
             plantillaCultivoDetalle.idplantilla = idplantilla;
+            ViewBag.idreturn = idplantilla;
             ViewBag.idplantilla = new SelectList(db.PlantillaCultivoCabecera, "idplantilla", "idempresa");
-            ViewBag.idactividad = new SelectList(db.TablaActividades.Where(t => t.idparent == idactividades), "idactividades", "descripcion");
+            ViewBag.idactividad = new SelectList(db.TablaActividades.Where(t => t.idparent == idactividades && t.abreviatura != ""), "idactividades", "descripcion");
             return View(plantillaCultivoDetalle);
         }
 

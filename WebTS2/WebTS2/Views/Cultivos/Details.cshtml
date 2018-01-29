@@ -1,0 +1,125 @@
+﻿@model WebTS2.Models.Cultivo
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Presupuestos</h3>
+                </div>
+                <div class="box-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.idfundo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Fundo.descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.idlote)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Lote.descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.idplantilla)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PlantillaCultivoCabecera.descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.area)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Lote.area)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fechainicio)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fechainicio)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fechafin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fechafin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fechacreacion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fechacreacion)
+                        </dd>                       
+
+                    </dl>
+
+                    @foreach (var detalle in ViewBag.Detalles)
+                    {
+                        <hr size="10" />
+                        <h4>@detalle.NombreActividad</h4>
+                        <a class="btn btn-primary btn-xs" href="/CultivoDetalles/Create?idcultivo=@detalle.IdCabecera&idactividades=@detalle.IdActividad&idplantilla=@Model.idplantilla">Agregar</a>
+                        @*@Html.ActionLink("agregar", "createdetalle", new {id = @detalle.IdCabecera, id2 = @detalle.IdActividad })*@
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>
+                                    Actividad
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>   
+                                <th>
+                                    Fecha de llenado
+                                </th>                                
+                                <th>
+
+                                </th>
+                            </tr>
+                            @foreach (var item in detalle.detalle)
+                            {
+                                <tr>
+                                    <td width="25%">@item.TablaActividades.descripcion</td>
+                                    <td width="25%">@item.cantidad</td>
+                                    <td width="25%">@item.fechallenado</td>                                    
+                                    <td width="25%"><a class="btn btn-danger btn-xs" href="/CultivoDetalles/Delete/@item.idcultivodetalle">Eliminar</a></td>
+                                </tr>
+                            }
+                        </table>
+                    }
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+
+                            @Html.ActionLink("Editar", "Edit", new { id = Model.idcultivo }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

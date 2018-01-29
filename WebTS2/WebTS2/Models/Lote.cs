@@ -11,9 +11,18 @@ namespace WebTS2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using Validacion;
+
+    [MetadataType(typeof(LoteValidacion))]
     public partial class Lote
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Lote()
+        {
+            this.Cultivo = new HashSet<Cultivo>();
+        }
+    
         public string idempresa { get; set; }
         public string idfundo { get; set; }
         public string idlote { get; set; }
@@ -24,5 +33,7 @@ namespace WebTS2.Models
         public Nullable<System.DateTime> fechacambio { get; set; }
     
         public virtual Fundo Fundo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cultivo> Cultivo { get; set; }
     }
 }

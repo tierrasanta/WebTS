@@ -34,13 +34,27 @@ namespace WebTS2.Controllers
             var viewModel = new PlantillaCultivoCabeceraIndexViewModel();
 
 
-            var pager = new Pager(db.PlantillaCultivoCabecera.Count(), page);
-            viewModel.Items = db.PlantillaCultivoCabecera
-                    .OrderBy(c => c.idplantilla)
+
+            if (Search == null || Search.Equals(""))
+            {
+                var pager = new Pager(db.PlantillaCultivoCabecera.Count(), page);
+                viewModel.Items = db.PlantillaCultivoCabecera
+                        .OrderBy(c => c.idplantilla)
+                        .Skip((pager.CurrentPage - 1) * pager.PageSize)
+                        .Take(pager.PageSize).ToList();
+                viewModel.Pager = pager;
+            }
+            else
+            {
+
+                var pager = new Pager(db.PlantillaCultivoCabecera.Where(c => c.descripcion.Contains(Search)).Count(), page);
+                viewModel.Items = db.PlantillaCultivoCabecera.Where(c => c.descripcion.Contains(Search))
+                    .OrderBy(c => c.descripcion)
                     .Skip((pager.CurrentPage - 1) * pager.PageSize)
                     .Take(pager.PageSize).ToList();
-            viewModel.Pager = pager;
-
+                viewModel.Pager = pager;
+                @ViewBag.Search = Search;
+            }
             return View(viewModel);
         }
 
@@ -97,6 +111,8 @@ namespace WebTS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idempresa,idplantilla,descripcion,idusuario,fechacreacion,fechacambio")] PlantillaCultivoCabecera plantillaCultivoCabecera)
         {
+            plantillaCultivoCabecera.idempresa = "01";
+            plantillaCultivoCabecera.idusuario = "0001";
             if (ModelState.IsValid)
             {
                 db.PlantillaCultivoCabecera.Add(plantillaCultivoCabecera);
@@ -114,7 +130,7 @@ namespace WebTS2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             PlantillaCultivoCabecera plantillaCultivoCabecera = db.PlantillaCultivoCabecera.Find(id);
             if (plantillaCultivoCabecera == null)
             {
@@ -130,6 +146,7 @@ namespace WebTS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idempresa,idplantilla,descripcion,idusuario,fechacreacion,fechacambio")] PlantillaCultivoCabecera plantillaCultivoCabecera)
         {
+            plantillaCultivoCabecera.fechacambio = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Entry(plantillaCultivoCabecera).State = EntityState.Modified;
@@ -174,7 +191,7 @@ namespace WebTS2.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult ReportExcel()
+        public ActionResult ReportExcel(int id)
         {
             using (var package = new ExcelPackage())
             {
@@ -184,25 +201,80 @@ namespace WebTS2.Controllers
                 ws.Cells.Style.Font.Size = 11;
                 ws.Cells.Style.Font.Name = "Calibri";
                 //
-                List<PlantillaCultivoCabecera> list = db.PlantillaCultivoCabecera.ToList();
+                List<TablaActividades> list = db.TablaActividades.Where(t => t.idparent == null && t.abreviatura == "").ToList();
                 int pos = 4;
-                ws.Cells[pos, 2].Value = "idempresa";
-                ws.Cells[pos, 4].Value = "descripcion";
-                ws.Cells[pos, 5].Value = "idusuario";
-                ws.Cells[pos, 6].Value = "fechacreacion";
-                ws.Cells[pos, 7].Value = "fechacambio";
-                ws.Cells[pos, 8].Value = "PlantillaCultivoDetalle";
-
+                int calculofinal = 0;
+                //falta agregar nombre de la plantilla
+                //ws.Cells[pos, 2].Value = "idempresa";
+                //ws.Cells[pos, 4].Value = "descripcion";
+                //ws.Cells[pos, 5].Value = "idusuario";
+                //ws.Cells[pos, 6].Value = "fechacreacion";
+                //ws.Cells[pos, 7].Value = "fechacambio";
+                //ws.Cells[pos, 8].Value = "PlantillaCultivoDetalle";
+                List<string> posiciones = new List<string>();
                 foreach (var item in list)
                 {
+                    string linicio = "";
+                    string lfin = "";
+                    int inicio = 0;
                     pos++;
-                    ws.Cells[pos, 2].Value = item.idempresa == null ? "" : item.idempresa.ToString();
-                    ws.Cells[pos, 4].Value = item.descripcion == null ? "" : item.descripcion.ToString();
-                    ws.Cells[pos, 5].Value = item.idusuario == null ? "" : item.idusuario.ToString();
-                    ws.Cells[pos, 6].Value = item.fechacreacion == null ? "" : item.fechacreacion.ToString();
-                    ws.Cells[pos, 7].Value = item.fechacambio == null ? "" : item.fechacambio.ToString();
-                    ws.Cells[pos, 8].Value = item.PlantillaCultivoDetalle == null ? "" : item.PlantillaCultivoDetalle.ToString();
+                    ws.Cells[pos, 2].Value = item.descripcion == null ? "" : item.descripcion.ToString();
+                    pos++;
+                    ws.Cells[pos, 2].Value = "Descripcion";
+                    ws.Cells[pos, 4].Value = "Cantidad";
+                    ws.Cells[pos, 5].Value = "Costo";
+                    ws.Cells[pos, 6].Value = "Subtotal";
+                    List<PlantillaCultivoDetalle> listdetalle = db.PlantillaCultivoDetalle.Where(d => d.idplantilla == id && d.TablaActividades.idparent == item.idactividades).ToList();//Where(t => t.idplantilla == id && t.TablaActividades.idparent == item.idparent).ToList();
+                    foreach (var itemdetalle in listdetalle)
+                    {
+                        pos++;
+                        if (inicio == 0)
+                        {
+                            linicio = ws.Cells[pos, 6].FullAddress;
+                        }
+                        if (inicio == listdetalle.Count - 1)
+                        {
+                            lfin = ws.Cells[pos, 6].FullAddress;
+                        }
+
+                        ws.Cells[pos, 2].Value = itemdetalle.TablaActividades.descripcion == null ? "" : itemdetalle.TablaActividades.descripcion.ToString();
+                        ws.Cells[pos, 4].Value = itemdetalle.cantidad;
+                        ws.Cells[pos, 5].Value = itemdetalle.TablaActividades.costo1;
+                        ws.Cells[pos, 6].Formula = "PRODUCT(" + ws.Cells[pos, 4].FullAddress + ":" + ws.Cells[pos, 5].FullAddress + ")";
+                        inicio++;
+                    }
+                    pos++;
+                    ws.Cells[pos, 2].Value = "Total por actividad";
+                    ws.Cells[pos, 6].Formula = "SUM(" + linicio + ":" + lfin + ")";
+                    posiciones.Add(ws.Cells[pos, 6].FullAddress);
+                    pos++;
+                    ws.Cells[pos, 2].Value = "";
+                    //ws.Cells[pos, 4].Value = item.descripcion == null ? "" : item.descripcion.ToString();
+                    //ws.Cells[pos, 5].Value = item.idusuario == null ? "" : item.idusuario.ToString();
+                    //ws.Cells[pos, 6].Value = item.fechacreacion == null ? "" : item.fechacreacion.ToString();
+                    //ws.Cells[pos, 7].Value = item.fechacambio == null ? "" : item.fechacambio.ToString();
+                    //ws.Cells[pos, 8].Value = item.PlantillaCultivoDetalle == null ? "" : item.PlantillaCultivoDetalle.ToString();
                 }
+                pos++;
+                string formula = "";
+                ws.Cells[pos, 2].Value = "Total de la plantilla";
+                foreach (var item in posiciones)
+                {
+                    if (calculofinal == 0)
+                    {
+                        formula = "SUM(" + item + ";";
+                    }
+                    else if (calculofinal == posiciones.Count - 1)
+                    {
+                        formula = formula + item + ")";
+                    }
+                    else
+                    {
+                        formula = formula + item + ";";
+                    }
+                    calculofinal++;
+                }
+                ws.Cells[pos, 2].Formula = formula;
                 ws.Cells["B3:F" + pos].AutoFitColumns();
 
 

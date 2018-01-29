@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="~/Content/components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="~/Content/components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="~/Content/components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="~/Content/plugins/timepicker/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="~/Content/components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="~/Content/css/AdminLTE.min.css">
     <link rel="stylesheet" href="~/Content/css/skins/_all-skins.css">
 </head>
@@ -98,6 +101,19 @@
 
                         </ul>
                     </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-bar-chart"></i>
+                            <span>Presupuestos</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>@Html.ActionLink("Presupuesto", "Index", "Cultivos")</li>
+
+                        </ul>
+                    </li>
 
                 </ul>
             </section>
@@ -127,6 +143,10 @@
     <script src="~/Content/components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="~/Content/components/chart.js/Chart.js"></script>
     <script src="~/Content/js/pages/dashboard2.js"></script>
+    <script src="~/Content/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="~/Content/components/bootstrap-datetimepicker/moment.js"></script>
+    <script src="~/Content/components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="~/Content/js/demo.js"></script>
     @RenderSection("scripts", required: false)
 </body>

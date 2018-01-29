@@ -11,13 +11,17 @@ namespace WebTS2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using Validacion;
+
+    [MetadataType(typeof(FundoValidacion))]
     public partial class Fundo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Fundo()
         {
             this.Lote = new HashSet<Lote>();
+            this.Cultivo = new HashSet<Cultivo>();
         }
     
         public string idempresa { get; set; }
@@ -29,5 +33,7 @@ namespace WebTS2.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lote> Lote { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cultivo> Cultivo { get; set; }
     }
 }

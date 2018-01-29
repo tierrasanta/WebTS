@@ -6,13 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="b6c31a53d38e4cf5a0e2a908040825cc" Name="Diagram1">
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.CuentaContable" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.Cultivo" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.Empresa" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.Fundo" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.Lote" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.ParametroGenerales" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.PlantillaCultivoCabecera" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.PlantillaCultivoDetalle" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.PlantillaCultivoCabecera" Width="1.875" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.PlantillaCultivoDetalle" Width="1.75" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.TablaActividades" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.TablaCultivos" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
@@ -24,7 +23,14 @@
         <AssociationConnector Association="DB_9D8B6E_tierrasantaModel.FK_ACTIVIDADES_TABLACULTIVOS" ManuallyRouted="false" />
         <AssociationConnector Association="DB_9D8B6E_tierrasantaModel.FK_TablaActividades_TablaActividades" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.Usuario" Width="1.5" PointX="10.375" PointY="5.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.Cultivo" Width="1.5" PointX="13.25" PointY="5.375" />
+        <EntityTypeShape EntityType="DB_9D8B6E_tierrasantaModel.CultivoDetalle" Width="1.5" PointX="15.5" PointY="3.5" />
+        <AssociationConnector Association="DB_9D8B6E_tierrasantaModel.FK_CULTIVO_FUNDO" />
+        <AssociationConnector Association="DB_9D8B6E_tierrasantaModel.FK_CULTIVO_LOTE" />
+        <AssociationConnector Association="DB_9D8B6E_tierrasantaModel.FK_CULTIVO_PLANTILLA" />
+        <AssociationConnector Association="DB_9D8B6E_tierrasantaModel.FK_CULTIVODETALLE_CULTIVO" />
+        <AssociationConnector Association="DB_9D8B6E_tierrasantaModel.FK_CULTIVODETALLE_ACTIVIDAD" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

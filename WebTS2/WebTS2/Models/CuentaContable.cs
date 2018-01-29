@@ -11,7 +11,10 @@ namespace WebTS2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using Validacion;
+
+    [MetadataType(typeof(CuentaContableValidacion))]
     public partial class CuentaContable
     {
         public string idempresa { get; set; }
