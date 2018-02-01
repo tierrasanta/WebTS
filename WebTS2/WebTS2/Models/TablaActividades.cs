@@ -20,9 +20,9 @@ namespace WebTS2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TablaActividades()
         {
+            this.CultivoDetalle = new HashSet<CultivoDetalle>();
             this.PlantillaCultivoDetalle = new HashSet<PlantillaCultivoDetalle>();
             this.TablaActividades1 = new HashSet<TablaActividades>();
-            this.CultivoDetalle = new HashSet<CultivoDetalle>();
         }
     
         public int idactividades { get; set; }
@@ -35,14 +35,15 @@ namespace WebTS2.Models
         public decimal costo1 { get; set; }
         public System.DateTime fechacreacion { get; set; }
         public Nullable<System.DateTime> fechacambio { get; set; }
+        public bool prorrateo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CultivoDetalle> CultivoDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlantillaCultivoDetalle> PlantillaCultivoDetalle { get; set; }
-        public virtual TablaCultivos TablaCultivos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TablaActividades> TablaActividades1 { get; set; }
         public virtual TablaActividades TablaActividades2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CultivoDetalle> CultivoDetalle { get; set; }
+        public virtual TablaCultivos TablaCultivos { get; set; }
     }
 }

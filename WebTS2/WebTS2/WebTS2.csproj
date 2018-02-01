@@ -193,6 +193,7 @@
     <Compile Include="Controllers\LotesController.cs" />
     <Compile Include="Controllers\PlantillaCultivoCabecerasController.cs" />
     <Compile Include="Controllers\PlantillaCultivoDetallesController.cs" />
+    <Compile Include="Controllers\ReportegastolotesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -7583,6 +7584,11 @@
     <Content Include="Views\CultivoDetalles\Details.cshtml" />
     <Content Include="Views\CultivoDetalles\Edit.cshtml" />
     <Content Include="Views\CultivoDetalles\Index.cshtml" />
+    <Content Include="Views\Reportegastolotes\Create.cshtml" />
+    <Content Include="Views\Reportegastolotes\Delete.cshtml" />
+    <Content Include="Views\Reportegastolotes\Details.cshtml" />
+    <Content Include="Views\Reportegastolotes\Edit.cshtml" />
+    <Content Include="Views\Reportegastolotes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

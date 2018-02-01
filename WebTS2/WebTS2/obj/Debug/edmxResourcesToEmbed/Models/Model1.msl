@@ -132,22 +132,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TablaActividades">
-      <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.TablaActividades">
-        <MappingFragment StoreEntitySet="TablaActividades">
-          <ScalarProperty Name="idactividades" ColumnName="idactividades" />
-          <ScalarProperty Name="idparent" ColumnName="idparent" />
-          <ScalarProperty Name="idempresa" ColumnName="idempresa" />
-          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
-          <ScalarProperty Name="unimedida" ColumnName="unimedida" />
-          <ScalarProperty Name="costo1" ColumnName="costo1" />
-          <ScalarProperty Name="fechacreacion" ColumnName="fechacreacion" />
-          <ScalarProperty Name="fechacambio" ColumnName="fechacambio" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TablaCultivos">
       <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.TablaCultivos">
         <MappingFragment StoreEntitySet="TablaCultivos">
@@ -207,6 +191,7 @@
     <EntitySetMapping Name="Cultivo">
       <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.Cultivo">
         <MappingFragment StoreEntitySet="Cultivo">
+          <ScalarProperty Name="idtablacultivos" ColumnName="idtablacultivos" />
           <ScalarProperty Name="fechacambio" ColumnName="fechacambio" />
           <ScalarProperty Name="fechacreacion" ColumnName="fechacreacion" />
           <ScalarProperty Name="fechafin" ColumnName="fechafin" />
@@ -233,6 +218,23 @@
           <ScalarProperty Name="idcultivo" ColumnName="idcultivo" />
           <ScalarProperty Name="idusuario" ColumnName="idusuario" />
           <ScalarProperty Name="idempresa" ColumnName="idempresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TablaActividades">
+      <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.TablaActividades">
+        <MappingFragment StoreEntitySet="TablaActividades">
+          <ScalarProperty Name="prorrateo" ColumnName="prorrateo" />
+          <ScalarProperty Name="fechacambio" ColumnName="fechacambio" />
+          <ScalarProperty Name="fechacreacion" ColumnName="fechacreacion" />
+          <ScalarProperty Name="costo1" ColumnName="costo1" />
+          <ScalarProperty Name="unimedida" ColumnName="unimedida" />
+          <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idempresa" ColumnName="idempresa" />
+          <ScalarProperty Name="idparent" ColumnName="idparent" />
+          <ScalarProperty Name="idactividades" ColumnName="idactividades" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

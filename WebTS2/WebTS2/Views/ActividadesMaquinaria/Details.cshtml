@@ -15,53 +15,73 @@
                 </div>
                 <div class="box-body">
                     <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.descripcion)
-                        </dt>
+                        @{
 
-                        <dd>
-                            @Html.DisplayFor(model => model.descripcion)
-                        </dd>
+                            string prorrateo = "";
+                            if (Model.prorrateo == true)
+                            {
+                                prorrateo = "si";
+                            }
+                            else
+                            {
+                                prorrateo = "no";
+                            }
+                            <dt>
+                                @Html.DisplayNameFor(model => model.descripcion)
+                            </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.abreviatura)
-                        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.descripcion)
+                            </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.abreviatura)
-                        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.abreviatura)
+                            </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.unimedida)
-                        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.abreviatura)
+                            </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.TablaCultivos.descripcion)
-                        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.unimedida)
+                            </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.costo1)
-                        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.TablaCultivos.descripcion)
+                            </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.costo1)
-                        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.costo1)
+                            </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.fechacreacion)
-                        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.costo1)
+                            </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.fechacreacion)
-                        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.prorrateo)
+                            </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.fechacambio)
-                        </dt>
+                            <dd>
+                                @prorrateo
+                            </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.fechacambio)
-                        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.fechacreacion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.fechacreacion)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.fechacambio)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.fechacambio)
+                            </dd>
+                        }
                     </dl>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">

@@ -86,7 +86,7 @@ namespace WebTS2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idactividades,idparent,idempresa,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio")] TablaActividades tablaActividades)
+        public ActionResult Create([Bind(Include = "idactividades,idparent,idempresa,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio,prorrateo")] TablaActividades tablaActividades)
         {
             tablaActividades.idempresa = "01";
             tablaActividades.idusuario = "0001";
@@ -125,7 +125,7 @@ namespace WebTS2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idactividades,idparent,idempresa,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio")] TablaActividades tablaActividades)
+        public ActionResult Edit([Bind(Include = "idactividades,idparent,idempresa,idusuario,descripcion,abreviatura,unimedida,costo1,fechacreacion,fechacambio,prorrateo")] TablaActividades tablaActividades)
         {
             tablaActividades.idparent = 4;
             tablaActividades.fechacambio = DateTime.Now;
@@ -185,7 +185,7 @@ namespace WebTS2.Controllers
                 ws.Cells.Style.Font.Size = 11;
                 ws.Cells.Style.Font.Name = "Calibri";
                 //.Include(t => t.TablaCultivos).Include(t => t.TablaActividades2)
-                List<TablaActividades> list = db.TablaActividades.Where(x => x.idparent == 4).Include(t => t.TablaCultivos).Include(t => t.TablaActividades2).ToList();
+                List<TablaActividades> list = db.TablaActividades.Where(x => x.idparent == 4).Include(t => t.TablaActividades2).ToList();
                 int pos = 4;
                 ws.Cells[pos, 4].Value = "descripcion";
                 ws.Cells[pos, 5].Value = "abreviatura";
@@ -199,7 +199,6 @@ namespace WebTS2.Controllers
                     pos++;
                     ws.Cells[pos, 4].Value = item.descripcion == null ? "" : item.descripcion.ToString();
                     ws.Cells[pos, 5].Value = item.abreviatura == null ? "" : item.abreviatura.ToString();
-                    ws.Cells[pos, 6].Value = item.TablaCultivos.descripcion == null ? "" : item.TablaCultivos.descripcion.ToString();
                     ws.Cells[pos, 7].Value = item.costo1 == null ? "" : item.costo1.ToString();
                     ws.Cells[pos, 9].Value = item.fechacreacion == null ? "" : item.fechacreacion.ToString();
                     ws.Cells[pos, 10].Value = item.fechacambio == null ? "" : item.fechacambio.ToString();
@@ -239,13 +238,12 @@ namespace WebTS2.Controllers
             table.AddCell(new Phrase("Fecha de cambio", boldTableFont));
 
             //
-            List<TablaActividades> list = db.TablaActividades.Where(x => x.idparent == 4).Include(t => t.TablaCultivos).Include(t => t.TablaActividades2).ToList();
+            List<TablaActividades> list = db.TablaActividades.Where(x => x.idparent == 4).Include(t => t.TablaActividades2).ToList();
 
             foreach (var item in list)
             {
                 table.AddCell(new Phrase(item.descripcion == null ? "" : item.descripcion.ToString(), bodyFont));
                 table.AddCell(new Phrase(item.abreviatura == null ? "" : item.abreviatura.ToString(), bodyFont));
-                table.AddCell(new Phrase(item.TablaCultivos.descripcion == null ? "" : item.TablaCultivos.descripcion.ToString(), bodyFont));
                 table.AddCell(new Phrase(item.costo1 == null ? "" : item.costo1.ToString(), bodyFont));
                 table.AddCell(new Phrase(item.fechacreacion == null ? "" : item.fechacreacion.ToString(), bodyFont));
                 table.AddCell(new Phrase(item.fechacambio == null ? "" : item.fechacambio.ToString(), bodyFont));

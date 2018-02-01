@@ -43,6 +43,9 @@
                                 @Html.DisplayNameFor(model => model.Items[0].idlote)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.Items[0].idtablacultivos)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Items[0].idplantilla)
                             </th>
                             <th>
@@ -72,6 +75,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Lote.descripcion)
                                 </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.TablaCultivos.descripcion)
+                                </th>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PlantillaCultivoCabecera.descripcion)
                                 </td>

@@ -28,5 +28,8 @@ namespace WebTS2.Models.Validacion
 
         [Display(Name = "Fecha de creación")]
         public System.DateTime fechacreacion { get; set; }
+
+        [Display(Name = "Producto")]
+        public int idtablacultivos { get; set; }
     }
 }

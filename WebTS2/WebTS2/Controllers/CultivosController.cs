@@ -45,7 +45,7 @@ namespace WebTS2.Controllers
             if (Search == null || Search.Equals(""))
             {
                 var pager = new Pager(db.Cultivo.Count(), page);
-                viewModel.Items = db.Cultivo.Include(c => c.Fundo).Include(c => c.Lote).Include(c => c.PlantillaCultivoCabecera)
+                viewModel.Items = db.Cultivo.Include(c => c.Fundo).Include(c => c.Lote).Include(c => c.PlantillaCultivoCabecera).Include(c=>c.TablaCultivos)
                         .OrderBy(c => c.idcultivo)
                         .Skip((pager.CurrentPage - 1) * pager.PageSize)
                         .Take(pager.PageSize).ToList();
@@ -54,8 +54,8 @@ namespace WebTS2.Controllers
             else
             {
                 
-                var pager = new Pager(db.Cultivo.Include(c => c.Fundo).Include(c => c.Lote).Include(c => c.PlantillaCultivoCabecera).Where(c => c.PlantillaCultivoCabecera.descripcion.Contains(Search) || c.Fundo.descripcion.Contains(Search) || c.Lote.descripcion.Contains(Search)).Count(), page);
-                viewModel.Items = db.Cultivo.Include(c => c.Fundo).Include(c => c.Lote).Include(c => c.PlantillaCultivoCabecera).Where(c => c.PlantillaCultivoCabecera.descripcion.Contains(Search) || c.Fundo.descripcion.Contains(Search) || c.Lote.descripcion.Contains(Search))
+                var pager = new Pager(db.Cultivo.Include(c => c.Fundo).Include(c => c.Lote).Include(c => c.PlantillaCultivoCabecera).Include(c => c.TablaCultivos).Where(c => c.PlantillaCultivoCabecera.descripcion.Contains(Search) || c.Fundo.descripcion.Contains(Search) || c.Lote.descripcion.Contains(Search) || c.TablaCultivos.descripcion.Contains(Search)).Count() , page);
+                viewModel.Items = db.Cultivo.Include(c => c.Fundo).Include(c => c.Lote).Include(c => c.PlantillaCultivoCabecera).Include(c => c.TablaCultivos).Where(c => c.PlantillaCultivoCabecera.descripcion.Contains(Search) || c.Fundo.descripcion.Contains(Search) || c.Lote.descripcion.Contains(Search) || c.TablaCultivos.descripcion.Contains(Search))
                         .OrderBy(c => c.PlantillaCultivoCabecera.descripcion)
                         .Skip((pager.CurrentPage - 1) * pager.PageSize)
                         .Take(pager.PageSize).ToList();
@@ -101,6 +101,7 @@ namespace WebTS2.Controllers
             ViewBag.idfundo = new SelectList(db.Fundo, "idfundo", "descripcion");
             ViewBag.idlote = new SelectList(db.Lote, "idlote", "descripcion");
             ViewBag.idplantilla = new SelectList(db.PlantillaCultivoCabecera, "idplantilla", "descripcion");
+            ViewBag.idtablacultivos = new SelectList(db.TablaCultivos.Where(t => t.idcodigo.StartsWith("02") && t.abreviatura != ""),"pktablacultivos","descripcion");
             return View();
         }
 
@@ -109,11 +110,11 @@ namespace WebTS2.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idempresa,idfundo,idlote,idcultivo,idusuario,idplantilla,area,fechainicio,fechafin,fechacreacion,fechacambio")] Cultivo cultivo)
+        public ActionResult Create([Bind(Include = "idempresa,idfundo,idlote,idcultivo,idtablacultivos,idusuario,idplantilla,area,fechainicio,fechafin,fechacreacion,fechacambio")] Cultivo cultivo)
         {
             cultivo.idempresa = "01";
             cultivo.idusuario = "0001";
-            
+            int id =  cultivo.idtablacultivos;
             if (ModelState.IsValid)
             {                
                 db.Cultivo.Add(cultivo);
@@ -121,9 +122,10 @@ namespace WebTS2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idempresa = new SelectList(db.Fundo, "idempresa", "idusuario", cultivo.idempresa);
-            ViewBag.idempresa = new SelectList(db.Lote, "idempresa", "idusuario", cultivo.idempresa);
-            ViewBag.idplantilla = new SelectList(db.PlantillaCultivoCabecera, "idplantilla", "idempresa", cultivo.idplantilla);
+            ViewBag.idfundo = new SelectList(db.Fundo, "idfundo", "descripcion");
+            ViewBag.idlote = new SelectList(db.Lote, "idlote", "descripcion");
+            ViewBag.idplantilla = new SelectList(db.PlantillaCultivoCabecera, "idplantilla", "descripcion");
+            ViewBag.idtablacultivos = new SelectList(db.TablaCultivos.Where(t => t.idcodigo.StartsWith("02") && t.abreviatura != ""), "pktablacultivos", "descripcion");
             return View(cultivo);
         }
 
@@ -142,6 +144,7 @@ namespace WebTS2.Controllers
             ViewBag.idfundo = new SelectList(db.Fundo, "idfundo", "descripcion");
             ViewBag.idlote = new SelectList(db.Lote, "idlote", "descripcion");
             ViewBag.idplantilla = new SelectList(db.PlantillaCultivoCabecera, "idplantilla", "descripcion");
+            ViewBag.idtablacultivos = new SelectList(db.TablaCultivos.Where(t => t.idcodigo.StartsWith("02") && t.abreviatura != ""), "pktablacultivos", "descripcion");
             return View(cultivo);
         }
 
@@ -150,7 +153,7 @@ namespace WebTS2.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idempresa,idfundo,idlote,idcultivo,idusuario,idplantilla,area,fechainicio,fechafin,fechacreacion,fechacambio")] Cultivo cultivo)
+        public ActionResult Edit([Bind(Include = "idempresa,idfundo,idlote,idcultivo,idtablacultivos,idusuario,idplantilla,area,fechainicio,fechafin,fechacreacion,fechacambio")] Cultivo cultivo)
         {
             cultivo.fechacambio = DateTime.Now;
             if (ModelState.IsValid)
@@ -162,6 +165,7 @@ namespace WebTS2.Controllers
             ViewBag.idfundo = new SelectList(db.Fundo, "idfundo", "descripcion");
             ViewBag.idlote = new SelectList(db.Lote, "idlote", "descripcion");
             ViewBag.idplantilla = new SelectList(db.PlantillaCultivoCabecera, "idplantilla", "descripcion");
+            ViewBag.idtablacultivos = new SelectList(db.TablaCultivos.Where(t => t.idcodigo.StartsWith("02") && t.abreviatura != ""), "pktablacultivos", "descripcion");
             return View(cultivo);
         }
 

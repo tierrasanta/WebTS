@@ -126,7 +126,7 @@
     <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="fechacambio" Type="DateTime" Precision="3" />
     <NavigationProperty Name="PlantillaCultivoCabecera" Relationship="Self.FK_PLANTILLADETALLE_PLANTILLACABECERA" FromRole="PlantillaCultivoDetalle" ToRole="PlantillaCultivoCabecera" />
-    <NavigationProperty Name="TablaActividades" Relationship="Self.FK_PLANTILLADETALLE_ACTIVIDADES" FromRole="PlantillaCultivoDetalle" ToRole="TablaActividades" />
+    <NavigationProperty Name="TablaActividades" Relationship="DB_9D8B6E_tierrasantaModel.FK_PLANTILLADETALLE_ACTIVIDADES" FromRole="PlantillaCultivoDetalle" ToRole="TablaActividades" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -137,26 +137,6 @@
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="TablaActividades">
-    <Key>
-      <PropertyRef Name="idactividades" />
-    </Key>
-    <Property Name="idactividades" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idparent" Type="Int32" />
-    <Property Name="idempresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="idusuario" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="abreviatura" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="unimedida" Type="Int32" Nullable="false" />
-    <Property Name="costo1" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
-    <Property Name="fechacambio" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="PlantillaCultivoDetalle" Relationship="Self.FK_PLANTILLADETALLE_ACTIVIDADES" FromRole="TablaActividades" ToRole="PlantillaCultivoDetalle" />
-    <NavigationProperty Name="TablaCultivos" Relationship="Self.FK_ACTIVIDADES_TABLACULTIVOS" FromRole="TablaActividades" ToRole="TablaCultivos" />
-    <NavigationProperty Name="TablaActividades1" Relationship="Self.FK_TablaActividades_TablaActividades" FromRole="TablaActividades" ToRole="TablaActividades1" />
-    <NavigationProperty Name="TablaActividades2" Relationship="Self.FK_TablaActividades_TablaActividades" FromRole="TablaActividades1" ToRole="TablaActividades" />
-    <NavigationProperty Name="CultivoDetalle" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVODETALLE_ACTIVIDAD" FromRole="TablaActividades" ToRole="CultivoDetalle" />
   </EntityType>
   <EntityType Name="TablaCultivos">
     <Key>
@@ -172,7 +152,8 @@
     <Property Name="valorchar" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="fechacambio" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="TablaActividades" Relationship="Self.FK_ACTIVIDADES_TABLACULTIVOS" FromRole="TablaCultivos" ToRole="TablaActividades" />
+    <NavigationProperty Name="TablaActividades" Relationship="DB_9D8B6E_tierrasantaModel.TablaCultivosTablaActividades" FromRole="TablaCultivos" ToRole="TablaActividades" />
+    <NavigationProperty Name="Cultivo" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVO_TABLACULTIVOS" FromRole="TablaCultivos" ToRole="Cultivo" />
   </EntityType>
   <EntityType Name="TablaGenerales">
     <Key>
@@ -223,42 +204,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PLANTILLADETALLE_ACTIVIDADES">
-    <End Role="TablaActividades" Type="Self.TablaActividades" Multiplicity="1" />
-    <End Role="PlantillaCultivoDetalle" Type="Self.PlantillaCultivoDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TablaActividades">
-        <PropertyRef Name="idactividades" />
-      </Principal>
-      <Dependent Role="PlantillaCultivoDetalle">
-        <PropertyRef Name="idactividad" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ACTIVIDADES_TABLACULTIVOS">
-    <End Role="TablaCultivos" Type="Self.TablaCultivos" Multiplicity="1" />
-    <End Role="TablaActividades" Type="Self.TablaActividades" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TablaCultivos">
-        <PropertyRef Name="pktablacultivos" />
-      </Principal>
-      <Dependent Role="TablaActividades">
-        <PropertyRef Name="unimedida" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TablaActividades_TablaActividades">
-    <End Role="TablaActividades" Type="Self.TablaActividades" Multiplicity="0..1" />
-    <End Role="TablaActividades1" Type="Self.TablaActividades" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TablaActividades">
-        <PropertyRef Name="idactividades" />
-      </Principal>
-      <Dependent Role="TablaActividades1">
-        <PropertyRef Name="idparent" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="EntitiesTierraSanta" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CuentaContable" EntityType="Self.CuentaContable" />
     <EntitySet Name="Empresa" EntityType="Self.Empresa" />
@@ -268,7 +213,6 @@
     <EntitySet Name="PlantillaCultivoCabecera" EntityType="Self.PlantillaCultivoCabecera" />
     <EntitySet Name="PlantillaCultivoDetalle" EntityType="Self.PlantillaCultivoDetalle" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-    <EntitySet Name="TablaActividades" EntityType="Self.TablaActividades" />
     <EntitySet Name="TablaCultivos" EntityType="Self.TablaCultivos" />
     <EntitySet Name="TablaGenerales" EntityType="Self.TablaGenerales" />
     <EntitySet Name="Ubicaciones" EntityType="Self.Ubicaciones" />
@@ -279,18 +223,6 @@
     <AssociationSet Name="FK_PLANTILLADETALLE_PLANTILLACABECERA" Association="Self.FK_PLANTILLADETALLE_PLANTILLACABECERA">
       <End Role="PlantillaCultivoCabecera" EntitySet="PlantillaCultivoCabecera" />
       <End Role="PlantillaCultivoDetalle" EntitySet="PlantillaCultivoDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PLANTILLADETALLE_ACTIVIDADES" Association="Self.FK_PLANTILLADETALLE_ACTIVIDADES">
-      <End Role="TablaActividades" EntitySet="TablaActividades" />
-      <End Role="PlantillaCultivoDetalle" EntitySet="PlantillaCultivoDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ACTIVIDADES_TABLACULTIVOS" Association="Self.FK_ACTIVIDADES_TABLACULTIVOS">
-      <End Role="TablaCultivos" EntitySet="TablaCultivos" />
-      <End Role="TablaActividades" EntitySet="TablaActividades" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TablaActividades_TablaActividades" Association="Self.FK_TablaActividades_TablaActividades">
-      <End Role="TablaActividades" EntitySet="TablaActividades" />
-      <End Role="TablaActividades1" EntitySet="TablaActividades" />
     </AssociationSet>
     <EntitySet Name="Usuario" EntityType="DB_9D8B6E_tierrasantaModel.Usuario" />
     <EntitySet Name="Cultivo" EntityType="DB_9D8B6E_tierrasantaModel.Cultivo" />
@@ -311,9 +243,26 @@
       <End Role="Cultivo" EntitySet="Cultivo" />
       <End Role="CultivoDetalle" EntitySet="CultivoDetalle" />
     </AssociationSet>
+    <EntitySet Name="TablaActividades" EntityType="DB_9D8B6E_tierrasantaModel.TablaActividades" />
     <AssociationSet Name="FK_CULTIVODETALLE_ACTIVIDAD" Association="DB_9D8B6E_tierrasantaModel.FK_CULTIVODETALLE_ACTIVIDAD">
+      <End EntitySet="TablaActividades" Role="TablaActividades" />
+      <End EntitySet="CultivoDetalle" Role="CultivoDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLANTILLADETALLE_ACTIVIDADES" Association="DB_9D8B6E_tierrasantaModel.FK_PLANTILLADETALLE_ACTIVIDADES">
       <End Role="TablaActividades" EntitySet="TablaActividades" />
-      <End Role="CultivoDetalle" EntitySet="CultivoDetalle" />
+      <End Role="PlantillaCultivoDetalle" EntitySet="PlantillaCultivoDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TablaActividades_TablaActividades" Association="DB_9D8B6E_tierrasantaModel.FK_TablaActividades_TablaActividades">
+      <End Role="TablaActividades" EntitySet="TablaActividades" />
+      <End Role="TablaActividades1" EntitySet="TablaActividades" />
+    </AssociationSet>
+    <AssociationSet Name="TablaCultivosTablaActividades" Association="DB_9D8B6E_tierrasantaModel.TablaCultivosTablaActividades">
+      <End Role="TablaCultivos" EntitySet="TablaCultivos" />
+      <End Role="TablaActividades" EntitySet="TablaActividades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CULTIVO_TABLACULTIVOS" Association="DB_9D8B6E_tierrasantaModel.FK_CULTIVO_TABLACULTIVOS">
+      <End Role="TablaCultivos" EntitySet="TablaCultivos" />
+      <End Role="Cultivo" EntitySet="Cultivo" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Usuario">
@@ -349,6 +298,8 @@
     <NavigationProperty Name="Lote" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVO_LOTE" FromRole="Cultivo" ToRole="Lote" />
     <NavigationProperty Name="PlantillaCultivoCabecera" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVO_PLANTILLA" FromRole="Cultivo" ToRole="PlantillaCultivoCabecera" />
     <NavigationProperty Name="CultivoDetalle" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVODETALLE_CULTIVO" FromRole="Cultivo" ToRole="CultivoDetalle" />
+    <Property Name="idtablacultivos" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TablaCultivos" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVO_TABLACULTIVOS" FromRole="Cultivo" ToRole="TablaCultivos" />
   </EntityType>
   <EntityType Name="CultivoDetalle">
     <Key>
@@ -420,15 +371,84 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="TablaActividades">
+    <Key>
+      <PropertyRef Name="idactividades" />
+    </Key>
+    <Property Name="idactividades" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idparent" Type="Int32" />
+    <Property Name="idempresa" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="idusuario" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="abreviatura" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="unimedida" Type="Int32" Nullable="false" />
+    <Property Name="costo1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="fechacreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="fechacambio" Type="DateTime" Precision="3" />
+    <Property Name="prorrateo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CultivoDetalle" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVODETALLE_ACTIVIDAD" FromRole="TablaActividades" ToRole="CultivoDetalle" />
+    <NavigationProperty Name="PlantillaCultivoDetalle" Relationship="DB_9D8B6E_tierrasantaModel.FK_PLANTILLADETALLE_ACTIVIDADES" FromRole="TablaActividades" ToRole="PlantillaCultivoDetalle" />
+    <NavigationProperty Name="TablaActividades1" Relationship="DB_9D8B6E_tierrasantaModel.FK_TablaActividades_TablaActividades" FromRole="TablaActividades" ToRole="TablaActividades1" />
+    <NavigationProperty Name="TablaActividades2" Relationship="DB_9D8B6E_tierrasantaModel.FK_TablaActividades_TablaActividades" FromRole="TablaActividades1" ToRole="TablaActividades" />
+    <NavigationProperty Name="TablaCultivos" Relationship="DB_9D8B6E_tierrasantaModel.TablaCultivosTablaActividades" FromRole="TablaActividades" ToRole="TablaCultivos" />
+  </EntityType>
   <Association Name="FK_CULTIVODETALLE_ACTIVIDAD">
-    <End Type="DB_9D8B6E_tierrasantaModel.TablaActividades" Role="TablaActividades" Multiplicity="1" />
-    <End Type="DB_9D8B6E_tierrasantaModel.CultivoDetalle" Role="CultivoDetalle" Multiplicity="*" />
+    <End Type="DB_9D8B6E_tierrasantaModel.TablaActividades" Multiplicity="1" Role="TablaActividades" />
+    <End Type="DB_9D8B6E_tierrasantaModel.CultivoDetalle" Multiplicity="*" Role="CultivoDetalle" />
     <ReferentialConstraint>
       <Principal Role="TablaActividades">
         <PropertyRef Name="idactividades" />
       </Principal>
       <Dependent Role="CultivoDetalle">
         <PropertyRef Name="idactividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLANTILLADETALLE_ACTIVIDADES">
+    <End Type="DB_9D8B6E_tierrasantaModel.TablaActividades" Role="TablaActividades" Multiplicity="1" />
+    <End Type="DB_9D8B6E_tierrasantaModel.PlantillaCultivoDetalle" Role="PlantillaCultivoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TablaActividades">
+        <PropertyRef Name="idactividades" />
+      </Principal>
+      <Dependent Role="PlantillaCultivoDetalle">
+        <PropertyRef Name="idactividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TablaActividades_TablaActividades">
+    <End Type="DB_9D8B6E_tierrasantaModel.TablaActividades" Role="TablaActividades" Multiplicity="0..1" />
+    <End Type="DB_9D8B6E_tierrasantaModel.TablaActividades" Role="TablaActividades1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TablaActividades">
+        <PropertyRef Name="idactividades" />
+      </Principal>
+      <Dependent Role="TablaActividades1">
+        <PropertyRef Name="idparent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TablaCultivosTablaActividades">
+    <End Type="DB_9D8B6E_tierrasantaModel.TablaCultivos" Role="TablaCultivos" Multiplicity="1" />
+    <End Type="DB_9D8B6E_tierrasantaModel.TablaActividades" Role="TablaActividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TablaCultivos">
+        <PropertyRef Name="pktablacultivos" />
+      </Principal>
+      <Dependent Role="TablaActividades">
+        <PropertyRef Name="unimedida" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CULTIVO_TABLACULTIVOS">
+    <End Type="DB_9D8B6E_tierrasantaModel.TablaCultivos" Role="TablaCultivos" Multiplicity="1" />
+    <End Type="DB_9D8B6E_tierrasantaModel.Cultivo" Role="Cultivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TablaCultivos">
+        <PropertyRef Name="pktablacultivos" />
+      </Principal>
+      <Dependent Role="Cultivo">
+        <PropertyRef Name="idtablacultivos" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

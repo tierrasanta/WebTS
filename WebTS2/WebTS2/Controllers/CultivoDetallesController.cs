@@ -67,7 +67,7 @@ namespace WebTS2.Controllers
             ViewBag.idreturn = idcultivo;
             ViewBag.idcultivo = new SelectList(db.Cultivo, "idcultivo", db.Cultivo);
             List<SelectListItem> list = new List<SelectListItem>();
-            var culdetalle = db.PlantillaCultivoDetalle.Include(c => c.TablaActividades).Where(t => t.TablaActividades.idparent == idactividades && t.TablaActividades.abreviatura != "" && t.idplantilla==idplantilla).OrderBy(t => t.TablaActividades.descripcion);
+            var culdetalle = db.PlantillaCultivoDetalle.Include(c => c.TablaActividades).Where(t => t.TablaActividades.idparent == idactividades && t.TablaActividades.abreviatura != "" && t.idplantilla==idplantilla && t.TablaActividades.prorrateo == false).OrderBy(t => t.TablaActividades.descripcion);
             foreach (var det in culdetalle)
             {
                 list.Add(new SelectListItem() { Text = det.TablaActividades.descripcion, Value = det.idactividad.ToString() });
@@ -94,7 +94,6 @@ namespace WebTS2.Controllers
             cultivoDetalle.idusuario = "0001";
             if (ModelState.IsValid)
             {
-
                 db.CultivoDetalle.Add(cultivoDetalle);
                 db.SaveChanges();
                 return RedirectToAction("details", "Cultivos", new { @id = cultivoDetalle.idcultivo });

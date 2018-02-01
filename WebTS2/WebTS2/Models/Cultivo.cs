@@ -34,11 +34,13 @@ namespace WebTS2.Models
         public System.DateTime fechafin { get; set; }
         public System.DateTime fechacreacion { get; set; }
         public Nullable<System.DateTime> fechacambio { get; set; }
+        public int idtablacultivos { get; set; }
     
         public virtual Fundo Fundo { get; set; }
         public virtual Lote Lote { get; set; }
         public virtual PlantillaCultivoCabecera PlantillaCultivoCabecera { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CultivoDetalle> CultivoDetalle { get; set; }
+        public virtual TablaCultivos TablaCultivos { get; set; }
     }
 }

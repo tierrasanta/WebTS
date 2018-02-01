@@ -20,7 +20,7 @@ namespace WebTS2.Models.Validacion
         public int unimedida { get; set; }
 
         [Required]
-        [Display(Name = "Costo")]
+         [Display(Name = "Costo")]
         public decimal costo1 { get; set; }
 
         [Display(Name = "Fecha de creación")]
@@ -28,5 +28,9 @@ namespace WebTS2.Models.Validacion
 
         [Display(Name = "Fecha de cambio")]
         public Nullable<System.DateTime> fechacambio { get; set; }
+
+        [Required]
+        [Display(Name = "Prorrateo")]
+        public bool prorrateo { get; set; }
     }
 }

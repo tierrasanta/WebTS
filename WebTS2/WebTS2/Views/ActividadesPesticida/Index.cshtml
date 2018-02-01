@@ -49,6 +49,9 @@
                                 @Html.DisplayNameFor(model => model.Items[0].costo1)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.Items[0].prorrateo)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Items[0].fechacreacion)
                             </th>
                             <th>
@@ -61,6 +64,15 @@
 
                         @foreach (var item in Model.Items)
                         {
+                            string prorrateo = "";
+                            if (item.prorrateo == true)
+                            {
+                                prorrateo = "si";
+                            }
+                            else
+                            {
+                                prorrateo = "no";
+                            }
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.descripcion)
@@ -73,6 +85,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.costo1)
+                                </td>
+                                <td>
+                                    @prorrateo
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.fechacreacion)
