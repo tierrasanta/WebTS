@@ -49,6 +49,9 @@
                                 @Html.DisplayNameFor(model => model.Items[0].costo1)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.Items[0].prorrateo)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Items[0].fechacreacion)
                             </th>
                             <th>
@@ -61,37 +64,49 @@
 
                         @foreach (var item in Model.Items)
                         {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.abreviatura)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TablaCultivos.descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.costo1)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fechacreacion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fechacambio)
-                            </td>
-                            <td>
-                                <a class="btn btn-primary btn-xs" href="@Url.Action("Details", new { id=item.idactividades })">
-                                    <i class="fa fa-file" aria-hidden="true"></i> Detalle
-                                </a>
-                                <a class="btn btn-success btn-xs" href="@Url.Action("Edit", new { id=item.idactividades })">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i> Editar
-                                </a>
-                                <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id=item.idactividades })">
-                                    <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
-                                </a>
-                            </td>
-                        </tr>
+                            string prorrateo = "";
+                            if (item.prorrateo == true)
+                            {
+                                prorrateo = "si";
+                            }
+                            else
+                            {
+                                prorrateo = "no";
+                            }
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.abreviatura)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TablaCultivos.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.costo1)
+                                </td>
+                                <td>
+                                    @prorrateo
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fechacreacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fechacambio)
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-xs" href="@Url.Action("Details", new { id=item.idactividades })">
+                                        <i class="fa fa-file" aria-hidden="true"></i> Detalle
+                                    </a>
+                                    <a class="btn btn-success btn-xs" href="@Url.Action("Edit", new { id=item.idactividades })">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+                                    </a>
+                                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id=item.idactividades })">
+                                        <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
+                                    </a>
+                                </td>
+                            </tr>
                         }
 
                     </table>

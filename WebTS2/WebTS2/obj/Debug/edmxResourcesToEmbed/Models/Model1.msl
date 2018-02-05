@@ -209,6 +209,7 @@
     <EntitySetMapping Name="CultivoDetalle">
       <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.CultivoDetalle">
         <MappingFragment StoreEntitySet="CultivoDetalle">
+          <ScalarProperty Name="costo" ColumnName="costo" />
           <ScalarProperty Name="fechacambio" ColumnName="fechacambio" />
           <ScalarProperty Name="fechacreacion" ColumnName="fechacreacion" />
           <ScalarProperty Name="fechallenado" ColumnName="fechallenado" />

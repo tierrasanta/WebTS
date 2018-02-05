@@ -37,14 +37,14 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             @*<th>
-                                @Html.DisplayNameFor(model => model.Items[0].idempresa)
-                            </th>*@
+                                    @Html.DisplayNameFor(model => model.Items[0].idempresa)
+                                </th>*@
                             <th>
                                 @Html.DisplayNameFor(model => model.Items[0].descripcion)
                             </th>
                             @*<th>
-                                @Html.DisplayNameFor(model => model.Items[0].idusuario)
-                            </th>*@
+                                    @Html.DisplayNameFor(model => model.Items[0].idusuario)
+                                </th>*@
                             <th>
                                 @Html.DisplayNameFor(model => model.Items[0].fechacreacion)
                             </th>
@@ -58,14 +58,14 @@
                         {
                             <tr>
                                 @*<td>
-                                    @Html.DisplayFor(modelItem => item.idempresa)
-                                </td>*@
+                                        @Html.DisplayFor(modelItem => item.idempresa)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.descripcion)
                                 </td>
                                 @*<td>
-                                    @Html.DisplayFor(modelItem => item.idusuario)
-                                </td>*@
+                                        @Html.DisplayFor(modelItem => item.idusuario)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.fechacreacion)
                                 </td>
@@ -73,18 +73,30 @@
                                     @Html.DisplayFor(modelItem => item.fechacambio)
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary btn-xs" href="@Url.Action("Details", new { id=item.idplantilla })">
-                                        <i class="fa fa-file" aria-hidden="true"></i> Detalle
-                                    </a>
-                                    <a class="btn btn-success btn-xs" href="@Url.Action("Edit", new { id=item.idplantilla })">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i> Editar
-                                    </a>
-                                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id=item.idplantilla })">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
-                                    </a>
+                                    @{int id = 0;
+                                        foreach (var vari in item.Cultivo)
+                                        {
+                                            id = vari.idcultivo;
+                                            break;
+                                        }
+                                        <a class="btn btn-primary btn-xs" href="@Url.Action("Details", new { id = item.idplantilla })">
+                                            <i class="fa fa-file" aria-hidden="true"></i> Detalle
+                                        </a>
+                                        if (id == 0)
+                                        {
+
+                                            <a class="btn btn-success btn-xs" href="@Url.Action("Edit", new { id = item.idplantilla })">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+                                            </a>
+                                            <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.idplantilla })">
+                                                <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
+                                            </a>
+                                        }
+                                    }
                                 </td>
+
                             </tr>
-                        }
+                                        }
 
                     </table>
                     <nav>

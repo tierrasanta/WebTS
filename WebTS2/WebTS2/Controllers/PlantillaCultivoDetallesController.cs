@@ -73,13 +73,14 @@ namespace WebTS2.Controllers
         }
 
         // GET: PlantillaCultivoDetalles/Create
-        public ActionResult Create(int idplantilla, int idactividades)
+        public ActionResult Create(int idplantilla, int idactividades, bool prorrateo)
         {
             PlantillaCultivoDetalle plantillaCultivoDetalle = new PlantillaCultivoDetalle();
             plantillaCultivoDetalle.idplantilla = idplantilla;
+            ViewBag.prorrateo = prorrateo; 
             ViewBag.idreturn = idplantilla;
             ViewBag.idplantilla = new SelectList(db.PlantillaCultivoCabecera, "idplantilla", "idempresa");
-            ViewBag.idactividad = new SelectList(db.TablaActividades.Where(t => t.idparent == idactividades && t.abreviatura != ""), "idactividades", "descripcion");
+            ViewBag.idactividad = new SelectList(db.TablaActividades.Where(t => t.idparent == idactividades && t.abreviatura != "" && t.prorrateo == prorrateo), "idactividades", "descripcion");
             return View(plantillaCultivoDetalle);
         }
 
@@ -132,12 +133,13 @@ namespace WebTS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idempresa,idplantilla,idplantilladetalle,idactividad,idusuario,cantidad,fechacreacion,fechacambio")] PlantillaCultivoDetalle plantillaCultivoDetalle)
         {
+            plantillaCultivoDetalle.fechacambio = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Entry(plantillaCultivoDetalle).State = EntityState.Modified;
 				//plantillaCultivoDetalle.Modificado = DateTime.Now;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "PlantillaCultivoCabeceras", new { @id = plantillaCultivoDetalle.idplantilla });
             }
             ViewBag.idplantilla = new SelectList(db.PlantillaCultivoCabecera, "idplantilla", "idempresa", plantillaCultivoDetalle.idplantilla);
             ViewBag.idactividad = new SelectList(db.TablaActividades, "idactividades", "idempresa", plantillaCultivoDetalle.idactividad);

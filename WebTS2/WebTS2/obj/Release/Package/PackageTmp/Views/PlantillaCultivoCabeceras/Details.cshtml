@@ -16,7 +16,7 @@
                 <div class="box-body">
                     <dl class="dl-horizontal">
                         <dt>
-                           
+
                         </dt>
                         <dt>
                             @Html.DisplayNameFor(model => model.descripcion)
@@ -43,52 +43,101 @@
                         </dd>
 
                     </dl>
-
-                    @foreach (var detalle in ViewBag.Detalles)
-                    {
-                        <hr size="10" />
-                        <h4>@detalle.NombreActividad</h4>
-
-                        <a class="btn btn-primary btn-xs" href="/PlantillaCultivoDetalles/Create?idplantilla=@detalle.IdCabecera&idactividades=@detalle.IdActividad">Agregar</a>
-                        @*<a type="button" class="btn btn-sm btn-success" href="@Url.Action("ReportExcel" , new{id = Model.idplantilla})"> <i class="fa fa-file-excel-o"></i> Reporte Excel</a>*@
-                        <table class="table table-bordered table-striped">
-                            <tr>
-                                <th>
-                                    Actividad
-                                </th>
-                                <th>
-                                    Cantidad
-                                </th>
-                                <th>
-                                    Unidad de Medida
-                                </th>
-                                <th>
-
-                                </th>
-                            </tr>
-                            @foreach (var item in detalle.detalle)
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab_1" data-toggle="tab">actividades sin prorrateo</a></li>
+                            <li><a href="#tab_2" data-toggle="tab">actividades con prorrateo</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            @foreach (var detalle in ViewBag.Detalles)
                             {
-                                <tr>
-                                    <td width="25%">@item.TablaActividades.descripcion</td>
-                                    <td width="25%">@item.cantidad</td>
-                                    <td width="25%">@item.TablaActividades.TablaCultivos.descripcion</td>
-                                    <td width="25%"><a class="btn btn-danger btn-xs" href="/PlantillaCultivoDetalles/Delete/@item.idplantilladetalle">Eliminar</a></td>
+                                <hr size="10" />
+                                <h4>@detalle.NombreActividad</h4>
+
+                                <a class="btn btn-primary btn-xs" href="/PlantillaCultivoDetalles/Create?idplantilla=@detalle.IdCabecera&idactividades=@detalle.IdActividad&prorrateo=false">Agregar</a>
+                                @*<a type="button" class="btn btn-sm btn-success" href="@Url.Action("ReportExcel" , new{id = Model.idplantilla})"> <i class="fa fa-file-excel-o"></i> Reporte Excel</a>*@
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>
+                                            Actividad
+                                        </th>
+                                        <th>
+                                            Cantidad
+                                        </th>
+                                        <th>
+                                            Unidad de Medida
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                    </tr>
+                                    @foreach (var item in detalle.detalle)
+                                    {
+
+                                        <tr>
+                                            <td width="25%">@item.TablaActividades.descripcion</td>
+                                            <td width="25%">@item.cantidad</td>
+                                            <td width="25%">@item.TablaActividades.TablaCultivos.descripcion</td>
+                                            <td width="25%">
+                                                @{
+                                                    if (ViewBag.usado == 0)
+                                                    {
+                                                        <a class="btn btn-success btn-xs" href="/PlantillaCultivoDetalles/Edit/@item.idplantilladetalle">Editar</a>
+                                                        <a class="btn btn-danger btn-xs" href="/PlantillaCultivoDetalles/Delete/@item.idplantilladetalle">Eliminar</a>
+                                                    }
+                                                }
+
+                                            </td>
 
 
-                                </tr>
+                                        </tr>
+                                    }
+                                </table>
                             }
-                        </table>
-                    }
+                        </div>
+                        <div class="tab-pane" id="tab_2">
+                            @foreach (var detallepro in ViewBag.Detallespro)
+                            {
+                                <hr size="10" />
+                                <h4>@detallepro.NombreActividad</h4>
+
+                                <a class="btn btn-primary btn-xs" href="/PlantillaCultivoDetalles/Create?idplantilla=@detallepro.IdCabecera&idactividades=@detallepro.IdActividad&prorrateo=true">Agregar</a>
+                                @*<a type="button" class="btn btn-sm btn-success" href="@Url.Action("ReportExcel" , new{id = Model.idplantilla})"> <i class="fa fa-file-excel-o"></i> Reporte Excel</a>*@
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>
+                                            Actividad
+                                        </th>                                        
+                                        <th>
+
+                                        </th>
+                                    </tr>
+                                    @foreach (var item in detallepro.detalle)
+                                    {
+                                        <tr>
+                                            <td width="50%">@item.TablaActividades.descripcion</td>                                           
+                                            <td width="50%">
+                                                @{
+                                                    if (ViewBag.usado == 0)
+                                                    {
+                                                        <a class="btn btn-danger btn-xs" href="/PlantillaCultivoDetalles/Delete/@item.idplantilladetalle">Eliminar</a>
+                                                    }
+                                                }
+                                               
+                                            </td>
 
 
-
+                                        </tr>
+                                    }
+                                </table>
+                            }
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-
-                            @Html.ActionLink("Edita", "Edit", new { id = Model.idplantilla }, new { @class = "btn btn-primary" })
+                        <div class="col-md-offset-2 col-md-10">                            
                             @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
-
-
                         </div>
                     </div>
                 </div>

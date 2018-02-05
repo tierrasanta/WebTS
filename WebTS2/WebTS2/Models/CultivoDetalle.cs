@@ -26,6 +26,7 @@ namespace WebTS2.Models
         public System.DateTime fechallenado { get; set; }
         public System.DateTime fechacreacion { get; set; }
         public Nullable<System.DateTime> fechacambio { get; set; }
+        public Nullable<decimal> costo { get; set; }
     
         public virtual Cultivo Cultivo { get; set; }
         public virtual TablaActividades TablaActividades { get; set; }

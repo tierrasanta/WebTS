@@ -56,6 +56,7 @@
           <Property Name="idcultivodetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idactividad" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="costo" Type="decimal" Precision="18" Scale="2" />
           <Property Name="fechallenado" Type="datetime" Nullable="false" />
           <Property Name="fechacreacion" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="fechacambio" Type="datetime" />
@@ -339,7 +340,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PLANTILLADETALLE_PLANTILLACABECERA">
-          <End Role="PlantillaCultivoCabecera" Type="Self.PlantillaCultivoCabecera" Multiplicity="1" />
+          <End Role="PlantillaCultivoCabecera" Type="Self.PlantillaCultivoCabecera" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PlantillaCultivoDetalle" Type="Self.PlantillaCultivoDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlantillaCultivoCabecera">
@@ -616,8 +619,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PLANTILLADETALLE_PLANTILLACABECERA">
-          <End Role="PlantillaCultivoCabecera" Type="Self.PlantillaCultivoCabecera" Multiplicity="1" />
-          <End Role="PlantillaCultivoDetalle" Type="Self.PlantillaCultivoDetalle" Multiplicity="*" />
+          <End Role="PlantillaCultivoCabecera" Type="Self.PlantillaCultivoCabecera" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PlantillaCultivoDetalle" Type="Self.PlantillaCultivoDetalle" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="PlantillaCultivoCabecera">
               <PropertyRef Name="idplantilla" />
@@ -739,6 +745,7 @@
           <Property Name="fechacambio" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Cultivo" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVODETALLE_CULTIVO" FromRole="CultivoDetalle" ToRole="Cultivo" />
           <NavigationProperty Name="TablaActividades" Relationship="DB_9D8B6E_tierrasantaModel.FK_CULTIVODETALLE_ACTIVIDAD" FromRole="CultivoDetalle" ToRole="TablaActividades" />
+          <Property Name="costo" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_CULTIVO_FUNDO">
           <End Type="DB_9D8B6E_tierrasantaModel.Fundo" Role="Fundo" Multiplicity="1" />
@@ -1089,6 +1096,7 @@
           <EntitySetMapping Name="CultivoDetalle">
             <EntityTypeMapping TypeName="DB_9D8B6E_tierrasantaModel.CultivoDetalle">
               <MappingFragment StoreEntitySet="CultivoDetalle">
+                <ScalarProperty Name="costo" ColumnName="costo" />
                 <ScalarProperty Name="fechacambio" ColumnName="fechacambio" />
                 <ScalarProperty Name="fechacreacion" ColumnName="fechacreacion" />
                 <ScalarProperty Name="fechallenado" ColumnName="fechallenado" />

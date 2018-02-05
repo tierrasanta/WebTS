@@ -23,12 +23,12 @@
                         <div class="form-horizontal">
 
                             @*<div class="form-group" style="display:none">
-                                @Html.LabelFor(model => model.idplantilla, "idplantilla", htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("idplantilla", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.idplantilla, "", new { @class = "text-danger" })
-                                </div>
-                            </div>*@
+                                    @Html.LabelFor(model => model.idplantilla, "idplantilla", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("idplantilla", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.idplantilla, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.idactividad, "Actividad", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -39,25 +39,26 @@
                             </div>
 
 
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-
-
+                            @{
+                                if (ViewBag.prorrateo != true)
+                                {
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                }
+                            }
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Grabar" class="btn btn-primary" />                                    
+                                    <input type="submit" value="Grabar" class="btn btn-primary" />
                                     <a class="btn btn-default" href="/PlantillaCultivoCabeceras/details?id=@ViewBag.idreturn">Cancelar</a>
                                 </div>
                             </div>
                         </div>
-                    }
+                                }
                 </div>
             </div>
         </div>

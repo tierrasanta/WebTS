@@ -51,6 +51,7 @@
     <Property Name="idcultivodetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idactividad" Type="int" Nullable="false" />
     <Property Name="cantidad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="costo" Type="decimal" Precision="18" Scale="2" />
     <Property Name="fechallenado" Type="datetime" Nullable="false" />
     <Property Name="fechacreacion" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
     <Property Name="fechacambio" Type="datetime" />
@@ -334,7 +335,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PLANTILLADETALLE_PLANTILLACABECERA">
-    <End Role="PlantillaCultivoCabecera" Type="Self.PlantillaCultivoCabecera" Multiplicity="1" />
+    <End Role="PlantillaCultivoCabecera" Type="Self.PlantillaCultivoCabecera" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="PlantillaCultivoDetalle" Type="Self.PlantillaCultivoDetalle" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PlantillaCultivoCabecera">

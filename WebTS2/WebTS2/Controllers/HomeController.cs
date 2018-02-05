@@ -17,18 +17,20 @@ namespace WebTS2.Controllers
         }
 
         public ActionResult Login()
-        {            
+        {
+            ViewBag.empresas = new SelectList(db.Empresa, "idempresa", "razonsocial");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(String login, String clave)
+        public ActionResult Login(String login, String clave, String empresas)
         {
             Usuario usuario = db.Usuario.Where(u => u.Login.Equals(login) && u.Clave.Equals(clave) && u.Estado == true).FirstOrDefault();
             if (usuario != null)
             {
                 Session["Usuario"] = usuario;
+                Session["Empresa"] = empresas;
                 return RedirectToAction("Index", "Home");
             }
             ViewBag.Message = "Usuario o clave no válidas";
@@ -38,6 +40,7 @@ namespace WebTS2.Controllers
         public ActionResult Logout()
         {
             Session["Usuario"] = null;
+            Session["Empresa"] = null;
             Session.Clear();
             return RedirectToAction("Login", "Home", new { Area = "" });
 

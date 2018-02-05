@@ -84,7 +84,7 @@ namespace WebTS2.Controllers
                 //int? idactividades = actividad.idactividades;Convert.ToInt32(id)
 
                 detalle.detalle = db.PlantillaCultivoDetalle
-                    .Where(p => p.idplantilla == id && p.TablaActividades.idparent == actividad.idactividades).ToList();
+                    .Where(p => p.idplantilla == id && p.TablaActividades.idparent == actividad.idactividades && p.TablaActividades.prorrateo == false).ToList();
 
                 //detalle.detalle.FirstOrDefault().TablaActividades.descripcion
                 //    db.TablaActividades.Where(t => t.idactividad.EndsWith("000000")).ToList();
@@ -93,7 +93,37 @@ namespace WebTS2.Controllers
                 detalles.Add(detalle);
 
             }
+            List<DetalleVM> detallespro = new List<DetalleVM>();
+            var actividadespro = db.TablaActividades.Where(t => t.idparent == null).ToList();
+            foreach (var actividad in actividades)
+            {
+                DetalleVM detalle = new DetalleVM();
+                detalle.NombreActividad = actividad.descripcion.ToUpper();
+                detalle.IdActividad = actividad.idactividades;
+                detalle.IdCabecera = Convert.ToInt32(id);
 
+                //int? idactividades = actividad.idactividades;Convert.ToInt32(id)
+
+                detalle.detalle = db.PlantillaCultivoDetalle
+                    .Where(p => p.idplantilla == id && p.TablaActividades.idparent == actividad.idactividades && p.TablaActividades.prorrateo == true).ToList();
+
+                //detalle.detalle.FirstOrDefault().TablaActividades.descripcion
+                //    db.TablaActividades.Where(t => t.idactividad.EndsWith("000000")).ToList();
+
+
+                detallespro.Add(detalle);
+
+            }
+            List <Cultivo> cultivo = db.Cultivo.Where(t => t.idplantilla == id).ToList();
+            if(cultivo.Count == 0)
+            {
+                ViewBag.usado = 0;
+            }
+            else
+            {
+                ViewBag.usado = 1;
+            }
+            ViewBag.Detallespro = detallespro;
             ViewBag.Detalles = detalles;
             return View(plantillaCultivoCabecera);
         }
@@ -176,7 +206,7 @@ namespace WebTS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PlantillaCultivoCabecera plantillaCultivoCabecera = db.PlantillaCultivoCabecera.Find(id);
+            PlantillaCultivoCabecera plantillaCultivoCabecera = db.PlantillaCultivoCabecera.Find(id);          
             db.PlantillaCultivoCabecera.Remove(plantillaCultivoCabecera);
             db.SaveChanges();
             return RedirectToAction("Index");
