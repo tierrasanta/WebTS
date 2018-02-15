@@ -184,6 +184,7 @@
     <Compile Include="Controllers\ActividadesManodeObraController.cs" />
     <Compile Include="Controllers\ActividadesMaquinariaController.cs" />
     <Compile Include="Controllers\ActividadesPesticidaController.cs" />
+    <Compile Include="Controllers\ActividadesProrrateoController.cs" />
     <Compile Include="Controllers\CuentasContableController.cs" />
     <Compile Include="Controllers\CultivoDetallesController.cs" />
     <Compile Include="Controllers\CultivosController.cs" />
@@ -199,6 +200,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\Pager.cs" />
+    <Compile Include="Models\ActividadesProrrateoVM.cs" />
+    <Compile Include="Models\ActividadProrrateoVM.cs" />
     <Compile Include="Models\CuentaContable.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -208,6 +211,7 @@
     <Compile Include="Models\CultivoDetalle.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetailsProrrateoVM.cs" />
     <Compile Include="Models\DetalleCultivoVM.cs" />
     <Compile Include="Models\DetalleVM.cs" />
     <Compile Include="Models\Empresa.cs">
@@ -216,6 +220,7 @@
     <Compile Include="Models\Fundo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\indexprorrateoVM.cs" />
     <Compile Include="Models\Lote.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -7496,6 +7501,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Prorrateo.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -7589,9 +7595,18 @@
     <Content Include="Views\Reportegastolotes\Details.cshtml" />
     <Content Include="Views\Reportegastolotes\Edit.cshtml" />
     <Content Include="Views\Reportegastolotes\Index.cshtml" />
+    <Content Include="Views\Cultivos\Createprorrateo.cshtml" />
+    <Content Include="Views\ActividadesProrrateo\Create.cshtml" />
+    <Content Include="Views\ActividadesProrrateo\Delete.cshtml" />
+    <Content Include="Views\ActividadesProrrateo\Details.cshtml" />
+    <Content Include="Views\ActividadesProrrateo\Edit.cshtml" />
+    <Content Include="Views\ActividadesProrrateo\Index.cshtml" />
+    <Content Include="Views\ActividadesProrrateo\Detailsactividad.cshtml" />
+    <Content Include="Views\ActividadesProrrateo\Createprorrateo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\DataModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

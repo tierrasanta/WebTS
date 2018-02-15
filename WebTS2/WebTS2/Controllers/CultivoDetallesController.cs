@@ -59,6 +59,20 @@ namespace WebTS2.Controllers
             return View(cultivoDetalle);
         }
 
+        public ActionResult Detailsactividad(int? id, int id2)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CultivoDetalle cultivoDetalle = db.CultivoDetalle.Find(id);
+            if (cultivoDetalle == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cultivoDetalle);
+        }
+
         // GET: CultivoDetalles/Create
         public ActionResult Create(int idcultivo, int idactividades, int idplantilla)
         {
